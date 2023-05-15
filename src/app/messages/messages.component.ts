@@ -14,12 +14,12 @@ export class MessagesComponent implements OnInit {
   constructor(private rxStompService: RxStompService) {
   }
 
-  ngOnInit() { /* TODO document why this method 'ngOnInit' is empty */
+  ngOnInit() { /*empty for later*/
   }
 
   onJoin() {
 
-   this.rxStompService.watch("/topic/demo").subscribe((message: Message) => {
+   this.rxStompService.watch("/topic/demo",{playerName:"name"}).subscribe((message: Message) => {
 
      let body;
      try {

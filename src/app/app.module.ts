@@ -6,15 +6,17 @@ import {AppComponent} from './app.component';
 import {RxStompService} from "./rx-stomp.service";
 import {rxStompServiceFactory} from "./rx-stomp-service-factory";
 import { MessagesComponent } from './messages/messages.component';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent
+    MessagesComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [{provide: RxStompService, useFactory: rxStompServiceFactory}],
   bootstrap: [AppComponent]
