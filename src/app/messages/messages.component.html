@@ -1,0 +1,10 @@
+<div id="chat">
+  <div *ngFor="let message of messages" class="message">
+    {{message}}
+  </div>
+</div>
+<div>
+  <input type="text" id="newMessage" placeholder="Message">
+  <button id="sendButton" (click)="onSendMessage()">Send</button>
+</div>
+<button id="joinButton" (click)="onJoin()">Join</button>
