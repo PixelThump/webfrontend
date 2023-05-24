@@ -5,14 +5,18 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RxStompService} from "./rx-stomp.service";
 import {rxStompServiceFactory} from "./rx-stomp-service-factory";
-import { MessagesComponent } from './messages/messages.component';
+import { ChatComponent } from './chat/chat.component';
 import { GameComponent } from './game/game.component';
+import { ChatlogComponent } from './chatlog/chatlog.component';
+import { ChattersComponent } from './chatters/chatters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
-    GameComponent
+    ChatComponent,
+    GameComponent,
+    ChatlogComponent,
+    ChattersComponent
   ],
   imports: [
     BrowserModule,

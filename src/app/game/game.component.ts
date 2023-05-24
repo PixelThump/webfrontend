@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RxStompService} from "../rx-stomp.service";
-import {Message} from "@stomp/stompjs/esm6";
+import {Message} from "@stomp/stompjs";
 
 @Component({
   selector: 'app-game',
@@ -32,14 +32,6 @@ export class GameComponent implements OnInit {
       }catch (e){
 
         body = message.body
-      }
-
-
-      if (Array.isArray(body)){
-
-        this.players = body
-      }else{
-
         this.players.push(body)
       }
     })
