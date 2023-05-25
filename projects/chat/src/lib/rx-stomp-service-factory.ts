@@ -1,5 +1,6 @@
-import {RxStompService} from "./rx-stomp.service";
-import {myRxStompConfig} from "./rx-stomp.config";
+
+import {myRxStompConfig} from "../../../../src/app/rx-stomp.config";
+import {RxStompService} from "./rx-stomp-service.service";
 
 export function rxStompServiceFactory():RxStompService{
 

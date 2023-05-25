@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RxStompService} from "../rx-stomp.service";
+
 import {Message} from "@stomp/stompjs";
+import {RxStompService} from "../../../projects/chat/src/lib/rx-stomp-service.service";
 
 @Component({
   selector: 'app-game',
