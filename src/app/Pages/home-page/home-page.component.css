@@ -16,7 +16,8 @@
 
 .primary-row .card{
 
-  height: calc(100vh / 3);
+  height: calc(100vw / 4);
+  max-height: calc(100vh / 3);
 }
 
 .primary-row .card a{
