@@ -41,7 +41,7 @@ a{
 
 .row{
 
-  padding: 5px 0;
+  padding: 5px 0 5px;
   display: flex;
   flex-wrap: wrap;
 }
