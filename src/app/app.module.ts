@@ -4,13 +4,17 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 
-import {GameComponent} from './game/game.component';
 import {ChatModule} from "../../projects/chat/src/lib/chat.module";
+import { PageHeaderComponent } from './Components/page-header/page-header.component';
+import { PageFooterComponent } from './Components/page-footer/page-footer.component';
+import { HomePageComponent } from './Pages/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameComponent
+    PageHeaderComponent,
+    PageFooterComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
