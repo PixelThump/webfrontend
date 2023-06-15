@@ -5,8 +5,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 
 import {ChatModule} from "../../projects/chat/src/lib/chat.module";
-import { PageHeaderComponent } from './Components/page-header/page-header.component';
-import { PageFooterComponent } from './Components/page-footer/page-footer.component';
+import { PageHeaderComponent } from './Components/general/page-header/page-header.component';
+import { PageFooterComponent } from './Components/general/page-footer/page-footer.component';
 import { HomePageComponent } from './Pages/home-page/home-page.component';
 
 @NgModule({
