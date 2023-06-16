@@ -4,10 +4,18 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 
-import {ChatModule} from "../../projects/chat/src/lib/chat.module";
 import { PageHeaderComponent } from './Components/general/page-header/page-header.component';
 import { PageFooterComponent } from './Components/general/page-footer/page-footer.component';
 import { HomePageComponent } from './Pages/home-page/home-page.component';
+import { HostPageComponent } from './Pages/host-page/host-page.component';
+import { HostComponent } from './Components/host/host.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ChatPageComponent } from './Pages/chat-page/chat-page.component';
+import { ChatComponent } from './Components/sesh/chat/chat.component';
+import { JoinPageComponent } from './Pages/join-page/join-page.component';
+import { JoinComponent } from './Components/join/join.component';
+import { HomeComponent } from './Components/home/home.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,13 +23,21 @@ import { HomePageComponent } from './Pages/home-page/home-page.component';
     PageHeaderComponent,
     PageFooterComponent,
     HomePageComponent,
+    HostPageComponent,
+    HostComponent,
+    ChatPageComponent,
+    ChatComponent,
+    JoinPageComponent,
+    JoinComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ChatModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
