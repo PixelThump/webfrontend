@@ -1,0 +1,22 @@
+.primary-row{
+
+  justify-content: center;
+}
+
+.primary-row .card{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: calc(100vw / 4);
+  max-height: calc(100vh / 3);
+
+  min-height: 85px;
+  min-width: 148px;
+}
+
+.primary-row .card a{
+
+  width: 100%;
+  height: 100%;
+}
+
+
