@@ -1,0 +1,12 @@
+.card{
+
+  cursor: pointer;
+  min-height: calc(100vw / 12 * 1);
+}
+
+h2{
+
+  text-align: center;
+}
+
+

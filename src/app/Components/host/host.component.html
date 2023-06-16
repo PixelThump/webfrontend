@@ -1,0 +1,12 @@
+<div class="row">
+  <h2 class="col-12">
+    Available Sesh Types
+  </h2>
+</div>
+
+<div class="row">
+  <div *ngFor="let seshType of seshTypes" class="card col-4" (click)="hostGame(seshType)">
+    {{seshType}}
+  </div>
+</div>
+
