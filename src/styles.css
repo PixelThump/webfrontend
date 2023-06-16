@@ -21,6 +21,23 @@ body{
   min-height: 100vh;
 }
 
+.card{
+
+  background-color: white;
+  border-radius: 5px;
+  border: lightgray 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: gray 0 2px 5px;
+  padding: 10px;
+}
+
+.card:hover{
+
+  background-color: #ececec;
+}
+
 [class*="col-"]{
 
   margin: 0 10px;
@@ -34,7 +51,7 @@ a{
 
 .container{
 
-  max-width: 1280px;
+  max-width: 1920px;
   margin: 0 auto;
   width: 100%;
 }
