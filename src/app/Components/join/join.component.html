@@ -2,8 +2,11 @@
   <h2>Join Game</h2>
   <label for="sessionCode">Sesh Code</label>
   <input id="sessioncode" formControlName="sessionCode" type="text" [maxLength]="sessionCodeLength"
-         (input)="sessionCodeToUppercase($event)" [placeholder]="sessionCodeLength + ' character sesh code'">
+         (input)="sessionCodeToUppercase($event)" [placeholder]="sessionCodeLength + ' character sesh code'"
+         tabindex="50">
+
   <label for="sessionCode">Name</label>
-  <input id="playerName" formControlName="playerName" type="text" [maxLength]="playerNameMaxLength" [placeholder]="'Your name'">
-  <button type="submit" [disabled]="!form.valid || !seshExists">Join</button>
+  <input id="playerName" formControlName="playerName" type="text" [maxLength]="playerNameMaxLength"
+         [placeholder]="'Your name'" tabindex="51">
+  <button type="submit" [disabled]="!form.valid || !seshExists" tabindex="52">Join</button>
 </form>

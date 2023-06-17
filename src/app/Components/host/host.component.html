@@ -3,10 +3,9 @@
     Available Sesh Types
   </h2>
 </div>
-
 <div class="row">
-  <div *ngFor="let seshType of seshTypes" class="card col-4" (click)="hostGame(seshType)">
+  <button *ngFor="let seshType of seshTypes" class="card col-4" (click)="hostGame(seshType)" tabindex="50">
     {{seshType}}
-  </div>
+  </button>
 </div>
 
