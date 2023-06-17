@@ -28,7 +28,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'chat/:sessionCode/player/:playername',
+    path: 'chat/:seshCode/player/:playerName',
     component:ChatPageComponent,
     pathMatch: 'prefix'
   }
