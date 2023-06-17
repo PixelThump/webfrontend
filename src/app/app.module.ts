@@ -16,6 +16,8 @@ import { JoinPageComponent } from './Pages/join-page/join-page.component';
 import { JoinComponent } from './Components/join/join.component';
 import { HomeComponent } from './Components/home/home.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { ChatUserListComponent } from './Components/sesh/chat/chat-user-list/chat-user-list.component';
+import { ChatMessageListComponent } from './Components/sesh/chat/chat-message-list/chat-message-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     JoinPageComponent,
     JoinComponent,
     HomeComponent,
+    ChatUserListComponent,
+    ChatMessageListComponent,
   ],
   imports: [
     BrowserModule,
