@@ -1,4 +1,4 @@
 export interface Sesh {
-  gameMode: string
-  sessionCode: string
+  seshType: string
+  seshCode: string
 }

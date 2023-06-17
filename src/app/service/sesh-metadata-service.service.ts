@@ -16,7 +16,7 @@ export class SeshMetadataServiceService {
 
   getSeshTypes(): Observable<string[]> {
 
-    return this.http.get<string[]>(this.backendUrl + "/gamemodes")
+    return this.http.get<string[]>(this.backendUrl + "/seshtypes")
   }
 
   hostGame(seshType: string): Observable<Sesh> {
@@ -25,7 +25,7 @@ export class SeshMetadataServiceService {
       headers: {'Content-Type': 'application/json'}
     }
 
-    return this.http.post<Sesh>(this.backendUrl + "/sessions", seshType, options)
+    return this.http.post<Sesh>(this.backendUrl + "/seshs", seshType, options)
   }
 
   getSesh(sessionCode: string): Observable<Sesh> {
