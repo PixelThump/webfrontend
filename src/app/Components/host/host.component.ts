@@ -24,7 +24,12 @@ export class HostComponent implements OnInit {
 
     this.metadataService.hostGame(seshType).subscribe((sesh: Sesh) => {
 
-      this.router.navigateByUrl("/" + sesh.gameMode.toLowerCase() + "/" + sesh.sessionCode + "/player/host")
+      this.router.navigateByUrl("/" + sesh.seshType.toLowerCase() + "/" + sesh.seshCode + "/player/host").catch(error=> this.handleHostError(error))
     })
+  }
+
+  handleHostError(error: any) {
+
+    console.log(error)
   }
 }

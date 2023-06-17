@@ -33,7 +33,7 @@ export class JoinComponent {
     if (this.sesh == undefined) return
     const sesh = this.sesh
     const playerName = this.form.value.playerName?.valueOf()
-    this.router.navigateByUrl("/"+ sesh.gameMode.toLowerCase() + "/" + sesh.sessionCode + "/player/" + playerName)
+    this.router.navigateByUrl("/"+ sesh.seshType.toLowerCase() + "/" + sesh.seshCode + "/player/" + playerName).catch(error=> this.handleJoinError(error))
   }
 
   sessionCodeToUppercase(changeEvent: Event) {
@@ -47,6 +47,7 @@ export class JoinComponent {
   }
 
   private checkSessionExists(sessionCode: string) {
+
     const observer = {
       next: (sesh: Sesh) => this.sesh = sesh,
       error: ((error:Error) => this.handleCheckError(error))
@@ -58,5 +59,11 @@ export class JoinComponent {
 
     console.log(error)
     this.seshExists = false;
+  }
+
+  private handleJoinError(error: any) {
+
+    console.log(error)
+    this.seshExists = false
   }
 }
