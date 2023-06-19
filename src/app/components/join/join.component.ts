@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SeshMetadataServiceService} from "../../service/sesh-metadata-service.service";
-import {Sesh} from "../../Model/Sesh";
+import {Sesh} from "../../model/Sesh";
 import {Router} from "@angular/router";
 
 @Component({

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SeshMetadataServiceService} from "../../service/sesh-metadata-service.service";
 import {Router} from "@angular/router";
-import {Sesh} from "../../Model/Sesh";
+import {Sesh} from "../../model/Sesh";
 
 @Component({
   selector: 'app-host',
