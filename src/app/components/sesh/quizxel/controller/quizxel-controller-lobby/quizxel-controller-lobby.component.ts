@@ -28,6 +28,4 @@ export class QuizxelControllerLobbyComponent implements OnInit{
     this.makeVIP.emit(true);
     this.needToAskForVIP = false
   }
-
-
 }
