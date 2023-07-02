@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 
 @Component({
@@ -6,16 +6,16 @@ import {QuizxelPlayer} from "../../model/QuizxelPlayer";
   templateUrl: './quizxel-controller-lobby.component.html',
   styleUrls: ['./quizxel-controller-lobby.component.css']
 })
-export class QuizxelControllerLobbyComponent {
+export class QuizxelControllerLobbyComponent implements OnInit{
 
   @Input() players: QuizxelPlayer[] = []
   needToAskForVIP = true
   @Output() makeVIP: EventEmitter<boolean> = new EventEmitter()
 
-  constructor() {
+  ngOnInit(): void {
 
-    for (const player of this.players) {
-
+    for (let player of this.players) {
+      console.log(player)
       if(player.vip) {
 
         this.needToAskForVIP = false
@@ -26,5 +26,8 @@ export class QuizxelControllerLobbyComponent {
   emmitMakeVIPEvent() {
 
     this.makeVIP.emit(true);
+    this.needToAskForVIP = false
   }
+
+
 }

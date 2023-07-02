@@ -58,7 +58,6 @@ export class QuizxelControllerComponent {
   private handleStateMessage(message: QuizxelStateMessage) {
 
     const state = message.state;
-    console.log(state)
     this.players = state.players;
     this.maxPlayers = state.maxPlayers;
     this.currentStage = state.currentStage;

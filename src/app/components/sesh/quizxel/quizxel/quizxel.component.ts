@@ -20,7 +20,6 @@ export class QuizxelComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
 
         this.playerName = <string>params.get("playerName")
-        console.log(this.playerName)
         this.playerIsHost = this.playerName === "host"
       }
     )
