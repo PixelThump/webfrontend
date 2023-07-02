@@ -31,6 +31,6 @@ export class SeshMetadataServiceService {
 
   getSesh(sessionCode: string): Observable<Sesh> {
 
-    return this.http.get<Sesh>(this.backendUrl + "/sessions/" + sessionCode)
+    return this.http.get<Sesh>(this.backendUrl + "/seshs/" + sessionCode)
   }
 }

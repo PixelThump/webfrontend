@@ -20,8 +20,10 @@ import { ChatUserListComponent } from './Components/sesh/chat/chat-user-list/cha
 import { ChatMessageListComponent } from './Components/sesh/chat/chat-message-list/chat-message-list.component';
 import { ChatInputComponent } from './Components/sesh/chat/chat-input/chat-input.component';
 import { QuizxelPageComponent } from './pages/quizxel-page/quizxel-page.component';
-import { QuizxelHostComponent } from './components/sesh/quizxel/quizxel-host/quizxel-host.component';
+import { QuizxelHostComponent } from './components/sesh/quizxel/host/quizxel-host/quizxel-host.component';
 import { QuizxelComponent } from './components/sesh/quizxel/quizxel/quizxel.component';
+import { QuizxelLobbyPlayerComponent } from './components/sesh/quizxel/host/quizxel-lobby-player/quizxel-lobby-player.component';
+import { QuizxelHostLobbyComponent } from './components/sesh/quizxel/host/quizxel-host-lobby/quizxel-host-lobby.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { QuizxelComponent } from './components/sesh/quizxel/quizxel/quizxel.comp
     QuizxelPageComponent,
     QuizxelHostComponent,
     QuizxelComponent,
+    QuizxelLobbyPlayerComponent,
+    QuizxelHostLobbyComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit {
         this.seshCode = <string>params.get("seshCode")
         this.playerName = <string>params.get("playerName")
 
-        this.seshService.joinSesh(this.seshCode, this.playerName).subscribe(iMessage => {
+        this.seshService.joinSeshAsController(this.seshCode, this.playerName).subscribe(iMessage => {
 
 
           const message = JSON.parse(iMessage.body)

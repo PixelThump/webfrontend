@@ -19,9 +19,17 @@ export class SheshServiceService {
     this.rxStomp.activate()
   }
 
-  joinSesh(seshCode: string, playerName: string): Observable<IMessage> {
+  joinSeshAsHost(seshCode: string): Observable<IMessage> {
 
-    const path = this.topicPath + "/" + seshCode
+    const path = this.topicPath + "/" + seshCode + "/host"
+
+    const options = {destination: path}
+    return this.rxStomp.watch(options)
+  }
+
+  joinSeshAsController(seshCode: string, playerName: string): Observable<IMessage> {
+
+    const path = this.topicPath + "/" + seshCode + "/controller"
     const headers = {'playerName': playerName}
 
     const options = {destination: path, subHeaders: headers, headers: headers}
