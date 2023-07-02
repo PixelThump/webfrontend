@@ -1,0 +1,7 @@
+<div *ngIf="needToAskForVIP">
+  <h2>Do you want to be the VIP?</h2>
+  <div>
+    <button (click)="emmitMakeVIPEvent()">Yes</button>
+    <button (click)="needToAskForVIP = false">No</button>
+  </div>
+</div>

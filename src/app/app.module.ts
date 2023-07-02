@@ -24,6 +24,8 @@ import { QuizxelHostComponent } from './components/sesh/quizxel/host/quizxel-hos
 import { QuizxelComponent } from './components/sesh/quizxel/quizxel/quizxel.component';
 import { QuizxelLobbyPlayerComponent } from './components/sesh/quizxel/host/quizxel-lobby-player/quizxel-lobby-player.component';
 import { QuizxelHostLobbyComponent } from './components/sesh/quizxel/host/quizxel-host-lobby/quizxel-host-lobby.component';
+import { QuizxelControllerLobbyComponent } from './components/sesh/quizxel/controller/quizxel-controller-lobby/quizxel-controller-lobby.component';
+import { QuizxelControllerComponent } from './components/sesh/quizxel/controller/quizxel-controller/quizxel-controller.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { QuizxelHostLobbyComponent } from './components/sesh/quizxel/host/quizxe
     QuizxelComponent,
     QuizxelLobbyPlayerComponent,
     QuizxelHostLobbyComponent,
+    QuizxelControllerLobbyComponent,
+    QuizxelControllerComponent,
   ],
   imports: [
     BrowserModule,

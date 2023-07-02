@@ -8,5 +8,5 @@ import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 })
 export class QuizxelLobbyPlayerComponent {
 
-  @Input() player: QuizxelPlayer = {playername:"", vip:false}
+  @Input() player: QuizxelPlayer = {playername:"", vip:false, playerId: ""}
 }

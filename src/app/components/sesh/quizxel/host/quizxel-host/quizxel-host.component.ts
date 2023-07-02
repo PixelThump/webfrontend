@@ -30,7 +30,6 @@ export class QuizxelHostComponent {
 
 
           const message = JSON.parse(iMessage.body)
-
           if ('state' in message) {
 
             this.handleStateMessage(<QuizxelStateMessage>message)
@@ -44,6 +43,7 @@ export class QuizxelHostComponent {
   private handleStateMessage(message: QuizxelStateMessage) {
 
     const state = message.state;
+    console.log(state)
     this.players = state.players;
     this.maxPlayers = state.maxPlayers;
     this.currentStage = state.currentStage;

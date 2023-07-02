@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {IMessage, RxStomp} from "@stomp/rx-stomp";
 import {Observable} from "rxjs";
+import {SeshCommand} from "../components/sesh/model/SeshCommand";
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,12 @@ export class SheshServiceService {
 
     const options = {destination: path, subHeaders: headers, headers: headers}
     return this.rxStomp.watch(options)
+  }
+
+  sendCommand(command: SeshCommand, seshCode: string) {
+
+    const path = this.topicPath + "/" + seshCode
+    const options = {destination: path, body: JSON.stringify({command: command})}
+    return this.rxStomp.publish(options)
   }
 }

@@ -1,3 +1,6 @@
+
+
 export interface Action{
-  player:string
+  playerId:string
+  type: string
 }
