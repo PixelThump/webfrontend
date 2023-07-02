@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Sesh} from "../Model/Sesh";
+import {Sesh} from "../model/Sesh";
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import {Sesh} from "../Model/Sesh";
 })
 export class SeshMetadataServiceService {
 
-  private backendUrl = "http://localhost:8080"
+  private backendUrl = "http://" + environment.apiUrl
 
   constructor(private http: HttpClient) {
   }

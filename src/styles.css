@@ -123,3 +123,8 @@ a{
 
   width: calc(100% / 12 - 20px);
 }
+
+.pageComponent{
+  display: inline-block;
+  height: 100%;
+}

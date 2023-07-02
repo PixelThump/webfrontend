@@ -1,0 +1,14 @@
+.chat{
+
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+}
+
+.row:first-child{
+
+  flex-grow: 1;
+  height: 100%;
+}

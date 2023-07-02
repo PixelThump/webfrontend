@@ -18,6 +18,10 @@ import { HomeComponent } from './Components/home/home.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { ChatUserListComponent } from './Components/sesh/chat/chat-user-list/chat-user-list.component';
 import { ChatMessageListComponent } from './Components/sesh/chat/chat-message-list/chat-message-list.component';
+import { ChatInputComponent } from './Components/sesh/chat/chat-input/chat-input.component';
+import { QuizxelPageComponent } from './pages/quizxel-page/quizxel-page.component';
+import { QuizxelHostComponent } from './components/sesh/quizxel/quizxel-host/quizxel-host.component';
+import { QuizxelComponent } from './components/sesh/quizxel/quizxel/quizxel.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { ChatMessageListComponent } from './Components/sesh/chat/chat-message-li
     HomeComponent,
     ChatUserListComponent,
     ChatMessageListComponent,
+    ChatInputComponent,
+    QuizxelPageComponent,
+    QuizxelHostComponent,
+    QuizxelComponent,
   ],
   imports: [
     BrowserModule,
