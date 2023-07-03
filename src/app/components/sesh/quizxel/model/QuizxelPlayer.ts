@@ -1,6 +1,6 @@
 export interface QuizxelPlayer {
 
-  playername:string
+  playerName:string
   vip:boolean
   playerId:string
 }

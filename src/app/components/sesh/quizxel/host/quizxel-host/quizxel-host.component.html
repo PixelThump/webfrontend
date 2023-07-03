@@ -1,2 +1,8 @@
-<app-quizxel-host-lobby *ngIf="currentStage.toString() === 'LOBBY'" [maxPlayers]="maxPlayers"
-                        [players]="players" [seshCode]="seshCode"></app-quizxel-host-lobby>
+<div class="screen" #screen>
+  <div class="fullScreenButtons">
+    <button *ngIf="fullScreenMode === false" (click)="goFullScreen(screen)" >Enter FullScreen</button>
+    <button *ngIf="fullScreenMode === true" (click)="exitFullScreen()" id="leaveFullScreenButton">X</button>
+  </div>
+  <app-quizxel-host-lobby *ngIf="currentStage.toString() === 'LOBBY'" [maxPlayers]="maxPlayers"
+                          [players]="players" [seshCode]="seshCode"></app-quizxel-host-lobby>
+</div>

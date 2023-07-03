@@ -1,5 +1,18 @@
-<div>{{seshCode}}</div>
-<div *ngFor="let player of players" >
-  <app-quizxel-lobby-player [player]="player"></app-quizxel-lobby-player>
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <h3 class="col-4" id="seshCode">{{seshCode}}</h3>
+    <div class="col-4"></div>
+  </div>
+
+  <div class="row" id="playerRow">
+    <div *ngFor="let player of players" class="col-6">
+      <app-quizxel-lobby-player  [player]="player"></app-quizxel-lobby-player>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-10"></div>
+    <div id="playerCount" class="col-2">Players {{players.length}} / {{maxPlayers}}</div>
+  </div>
+
 </div>
-<div>maxPlayers {{maxPlayers}}</div>

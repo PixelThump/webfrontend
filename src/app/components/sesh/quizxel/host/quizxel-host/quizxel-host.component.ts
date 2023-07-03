@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {SheshServiceService} from "../../../../../service/shesh-service.service";
 import {ActivatedRoute} from "@angular/router";
 import {QuizxelStateMessage} from "../../model/message/QuizxelStateMessage";
-import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {SeshStage} from "../../../model/SeshStage";
+import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 
 @Component({
   selector: 'app-quizxel-host',
@@ -17,6 +17,7 @@ export class QuizxelHostComponent {
   players: QuizxelPlayer[] = []
   maxPlayers: number = 5;
   currentStage: SeshStage = SeshStage.LOBBY;
+  fullScreenMode = false;
 
   constructor(private seshService: SheshServiceService, private route: ActivatedRoute) {
   }
@@ -45,5 +46,16 @@ export class QuizxelHostComponent {
     this.players = state.players;
     this.maxPlayers = state.maxPlayers;
     this.currentStage = state.currentStage;
+    console.log(this.players)
+  }
+
+  goFullScreen(screen: HTMLDivElement) {
+
+    screen.requestFullscreen().then(()=>this.fullScreenMode = true).catch();
+  }
+
+  exitFullScreen() {
+
+  document.exitFullscreen().then(()=>this.fullScreenMode = false).catch()
   }
 }

@@ -1,0 +1,31 @@
+.screen{
+
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.fullScreenButtons{
+
+  display: flex;
+  justify-content: right;
+  padding: 10px;
+}
+
+.fullScreenButtons button{
+
+  background: rgba(20,20,20,0.1);
+  border: none;
+  border-radius: 10px;
+}
+
+#leaveFullScreenButton{
+
+  font-size: 1.5rem;
+}
+
+app-quizxel-host-lobby{
+
+  flex-grow: 1;
+}

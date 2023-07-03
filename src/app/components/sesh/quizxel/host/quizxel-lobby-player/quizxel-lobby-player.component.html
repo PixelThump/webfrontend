@@ -1,4 +1,7 @@
-<div>
-  {{player.playername}}
+<div *ngIf="player" class="player">
+  <h3 class="playerName">
+    {{player.playerName}}
+  </h3>
+  <img src="assets/playericon.png" alt="playerIcon" class="playerIcon">
+  <div *ngIf="player.vip">VIP</div>
 </div>
-<div *ngIf="player.vip">VIP</div>

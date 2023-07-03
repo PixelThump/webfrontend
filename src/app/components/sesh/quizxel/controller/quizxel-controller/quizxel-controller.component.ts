@@ -8,6 +8,7 @@ import {SeshCommand} from "../../../model/SeshCommand";
 import {MakeVipAction} from "../../../model/action/MakeVipAction";
 import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
+import {StartSeshAction} from "../../../model/action/StartSeshAction";
 
 
 @Component({
@@ -61,7 +62,7 @@ export class QuizxelControllerComponent {
     this.players = state.players;
     this.maxPlayers = state.maxPlayers;
     this.currentStage = state.currentStage;
-    state.players.filter((player) => player.playername !== this.playerName).forEach((player) => this.playerId = player.playerId);
+    state.players.filter((player) => player.playerName !== this.playerName).forEach((player) => this.playerId = player.playerId);
   }
 
   makeVIP(value: boolean) {
@@ -76,5 +77,12 @@ export class QuizxelControllerComponent {
 
     this.subscription.unsubscribe()
     this.router.navigateByUrl("/home").catch()
+  }
+
+  startSesh(value: boolean) {
+
+    const startSeshAction: StartSeshAction = {type: "startSesh", playerId: this.playerId, startSesh: value};
+    const command: SeshCommand = {playerId: this.playerId, action: startSeshAction}
+    this.seshService.sendCommand(command, this.seshCode);
   }
 }

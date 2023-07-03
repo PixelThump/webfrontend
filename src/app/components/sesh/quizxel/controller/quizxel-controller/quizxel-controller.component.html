@@ -1,2 +1,3 @@
 <app-quizxel-controller-lobby *ngIf="currentStage.toString() === 'LOBBY'"
-                              [players]="players" (makeVIP)="makeVIP($event)"></app-quizxel-controller-lobby>
+                              [players]="players" (makeVIP)="makeVIP($event)" [seshCode]="seshCode"
+                              [playerName]="playerName" (startSesh) = "startSesh($event)"></app-quizxel-controller-lobby>
