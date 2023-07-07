@@ -1,6 +1,7 @@
-import {QuizxelState} from "../QuizxelState";
+import {LobbyState} from "../LobbyState";
+import {QuizxelMainState} from "../QuizxelMainState";
 
 export interface QuizxelStateMessage {
 
-  state:QuizxelState
+  state: LobbyState | QuizxelMainState
 }

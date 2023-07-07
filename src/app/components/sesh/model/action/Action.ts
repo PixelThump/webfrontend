@@ -1,6 +1,5 @@
-
-
-export interface Action{
-  playerId:string
+export interface Action {
+  body: any
   type: string
 }
+

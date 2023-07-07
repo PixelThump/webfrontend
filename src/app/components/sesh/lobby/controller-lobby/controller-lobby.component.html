@@ -1,4 +1,4 @@
-<div *ngIf="needToAskForVIP" class="popUpBackground">
+<div *ngIf="needToAskForVip" class="popUpBackground">
   <div id="vipPopUp">
     <h2>Do you want to be the VIP?</h2>
     <div class="row">
@@ -17,7 +17,9 @@
       <span *ngIf="!isVip">Please wait for the VIP to start the Sesh</span>
     </p>
   </div>
-  <div class="row" *ngIf="isVip"><button (click)="emitStartSesh()">Start Sesh</button></div>
+  <div class="row" *ngIf="isVip">
+    <button (click)="emitStartSesh()">Start Sesh</button>
+  </div>
   <div class="row">
     <div class="col-12">
       <p>Please do <b>not</b>:</p>
@@ -28,6 +30,4 @@
       </ul>
     </div>
   </div>
-
-
 </div>

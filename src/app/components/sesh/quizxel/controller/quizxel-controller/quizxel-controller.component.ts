@@ -5,10 +5,10 @@ import {QuizxelStateMessage} from "../../model/message/QuizxelStateMessage";
 import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {SeshStage} from "../../../model/SeshStage";
 import {SeshCommand} from "../../../model/SeshCommand";
-import {MakeVipAction} from "../../../model/action/MakeVipAction";
 import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
-import {StartSeshAction} from "../../../model/action/StartSeshAction";
+import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
+import {Action} from "../../../model/action/Action";
 
 
 @Component({
@@ -26,6 +26,9 @@ export class QuizxelControllerComponent {
   playerName = ""
   playerId = ""
   private subscription: Subscription = new Subscription();
+  isVIP = false;
+  currentQuestion = <QuizxelQuestion>{};
+  needToAskForVip = true;
 
   constructor(private seshService: SheshServiceService, private route: ActivatedRoute, private router: Router) {
   }
@@ -59,30 +62,42 @@ export class QuizxelControllerComponent {
   private handleStateMessage(message: QuizxelStateMessage) {
 
     const state = message.state;
+    console.log(state)
     this.players = state.players;
     this.maxPlayers = state.maxPlayers;
     this.currentStage = state.currentStage;
-    state.players.filter((player) => player.playerName !== this.playerName).forEach((player) => this.playerId = player.playerId);
+    this.players.forEach(player => {
+      if (player.vip) this.needToAskForVip = false;
+    });
+    state.players.filter((player) => player.playerName === this.playerName).forEach((player) => {
+      this.playerId = player.playerId;
+      this.isVIP = player.vip;
+    });
+
+    if ("currentQuestion" in state) {
+
+      this.currentQuestion = state.currentQuestion
+    }
   }
 
   makeVIP(value: boolean) {
 
 
-    const makeVipAction: MakeVipAction = {playerId: this.playerId, makeVip: value, type: "makeVip"}
-    const makeVIPCommand: SeshCommand = {playerId: this.playerId, action: makeVipAction}
+    const makeVipAction: Action = {body: this.playerId, type: "makeVip"}
+    const makeVIPCommand: SeshCommand = {action: makeVipAction}
     this.seshService.sendCommand(makeVIPCommand, this.seshCode)
   }
 
   private handleErrorMessage(message: QuizxelErrorMessage) {
 
     this.subscription.unsubscribe()
-    this.router.navigateByUrl("/home").catch()
+    this.router.navigateByUrl("/home")
   }
 
   startSesh(value: boolean) {
 
-    const startSeshAction: StartSeshAction = {type: "startSesh", playerId: this.playerId, startSesh: value};
-    const command: SeshCommand = {playerId: this.playerId, action: startSeshAction}
+    const startSeshAction: Action = {type: "startSesh", body: undefined};
+    const command: SeshCommand = {action: startSeshAction}
     this.seshService.sendCommand(command, this.seshCode);
   }
 }
