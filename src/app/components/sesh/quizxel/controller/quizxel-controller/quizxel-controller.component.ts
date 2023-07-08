@@ -73,11 +73,6 @@ export class QuizxelControllerComponent {
       this.playerId = player.playerId;
       this.isVIP = player.vip;
     });
-
-    if ("currentQuestion" in state) {
-
-      this.currentQuestion = state.currentQuestion
-    }
   }
 
   makeVIP(value: boolean) {

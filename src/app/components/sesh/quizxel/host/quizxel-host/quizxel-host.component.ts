@@ -3,7 +3,6 @@ import {SheshServiceService} from "../../../../../service/shesh-service.service"
 import {ActivatedRoute} from "@angular/router";
 import {QuizxelStateMessage} from "../../model/message/QuizxelStateMessage";
 import {SeshStage} from "../../../model/SeshStage";
-import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {LobbyState} from "../../model/LobbyState";
 import {QuizxelMainState} from "../../model/QuizxelMainState";
 
@@ -15,10 +14,7 @@ import {QuizxelMainState} from "../../model/QuizxelMainState";
 })
 export class QuizxelHostComponent {
 
-  seshCode = ""
   initializing = true
-  players: QuizxelPlayer[] = []
-  maxPlayers: number = 5;
   currentStage: SeshStage = SeshStage.LOBBY;
   fullScreenMode = false;
   lobbyState = <LobbyState>{};
@@ -31,9 +27,9 @@ export class QuizxelHostComponent {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
-        this.seshCode = <string>params.get("seshCode")
+        const seshCode = <string>params.get("seshCode")
 
-        this.seshService.joinSeshAsHost(this.seshCode).subscribe(iMessage => {
+        this.seshService.joinSeshAsHost(seshCode).subscribe(iMessage => {
 
           const message = JSON.parse(iMessage.body)
           if ('state' in message) {
@@ -50,22 +46,14 @@ export class QuizxelHostComponent {
 
     const state = message.state;
     this.extractState(state)
-    this.players = state.players;
-    this.maxPlayers = state.maxPlayers;
     this.currentStage = state.currentStage;
-    console.log(this.players)
   }
 
-  private extractState(state: LobbyState | QuizxelMainState) {
+  private extractState(state: LobbyState) {
 
     this.currentStage = state.currentStage;
-    if (true) {
+    this.lobbyState = state;
 
-      this.lobbyState = <LobbyState>state;
-    } else if (state.currentStage === SeshStage.MAIN) {
-
-      this.mainState = <QuizxelMainState>state;
-    }
   }
 
   goFullScreen(screen: HTMLDivElement) {
@@ -77,6 +65,4 @@ export class QuizxelHostComponent {
 
     document.exitFullscreen().then(() => this.fullScreenMode = false).catch()
   }
-
-
 }
