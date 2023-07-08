@@ -4,7 +4,6 @@
     <h3 class="col-4" id="seshCode">{{state.seshCode}}</h3>
     <div class="col-4"></div>
   </div>
-
   <div class="row" id="playerRow">
     <div *ngFor="let player of state.players" class="col-6">
       <app-lobby-player [player]="player"></app-lobby-player>

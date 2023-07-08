@@ -1,0 +1,15 @@
+#playerRow{
+
+  min-height: 100%;
+  display: flex;
+}
+
+.container{
+
+  display: block;
+}
+
+#seshCode{
+
+  text-align: center;
+}
