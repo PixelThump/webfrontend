@@ -9,6 +9,8 @@ import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
 import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
 import {SeshAction} from "../../../model/action/SeshAction";
+import {LobbyState} from "../../model/LobbyState";
+import {QuizxelMainState} from "../../model/QuizxelMainState";
 
 
 @Component({
@@ -29,6 +31,8 @@ export class QuizxelControllerComponent {
   isVIP = false;
   currentQuestion = <QuizxelQuestion>{};
   needToAskForVip = true;
+  lobbyState = <LobbyState>{};
+  mainState = <QuizxelMainState>{};
 
   constructor(private seshService: SheshServiceService, private route: ActivatedRoute, private router: Router) {
   }
@@ -39,9 +43,7 @@ export class QuizxelControllerComponent {
         this.seshCode = <string>params.get("seshCode")
         this.playerName = <string>params.get("playerName")
 
-
         this.subscription = this.seshService.joinSeshAsController(this.seshCode, this.playerName).subscribe(iMessage => {
-
 
           const message = JSON.parse(iMessage.body)
 
@@ -53,6 +55,7 @@ export class QuizxelControllerComponent {
 
             this.handleErrorMessage(<QuizxelErrorMessage>message)
           }
+
           this.initializing = false
         })
       }
