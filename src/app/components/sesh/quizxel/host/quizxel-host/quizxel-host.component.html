@@ -4,4 +4,5 @@
     <button *ngIf="fullScreenMode === true" (click)="exitFullScreen()" id="leaveFullScreenButton">X</button>
   </div>
   <app-host-lobby *ngIf="currentStage.toString() === 'LOBBY'" [state]="lobbyState"></app-host-lobby>
+  <app-quizxel-host-main *ngIf="currentStage.toString() === 'MAIN'" [state]="mainState"></app-quizxel-host-main>
 </div>

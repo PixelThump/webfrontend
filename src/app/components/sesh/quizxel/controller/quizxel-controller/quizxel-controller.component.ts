@@ -2,15 +2,14 @@ import {Component} from '@angular/core';
 import {SheshServiceService} from "../../../../../service/shesh-service.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizxelStateMessage} from "../../model/message/QuizxelStateMessage";
-import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {SeshStage} from "../../../model/SeshStage";
 import {SeshCommand} from "../../../model/SeshCommand";
 import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
-import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
 import {SeshAction} from "../../../model/action/SeshAction";
 import {LobbyState} from "../../model/LobbyState";
 import {QuizxelMainState} from "../../model/QuizxelMainState";
+import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 
 
 @Component({
@@ -21,13 +20,11 @@ import {QuizxelMainState} from "../../model/QuizxelMainState";
 export class QuizxelControllerComponent {
 
   seshCode = ""
-  players: QuizxelPlayer[] = []
   currentStage: SeshStage = SeshStage.LOBBY;
   playerName = ""
   playerId = ""
   private subscription: Subscription = new Subscription();
   isVIP = false;
-  currentQuestion = <QuizxelQuestion>{};
   needToAskForVip = true;
   lobbyState = <LobbyState>{};
   mainState = <QuizxelMainState>{};
@@ -61,25 +58,34 @@ export class QuizxelControllerComponent {
   private handleStateMessage(message: QuizxelStateMessage) {
 
     let state = message.state;
-    state = this.extractState(state)
+    this.extractState(state)
+  }
+
+  private extractState(state: LobbyState | QuizxelMainState) {
+
+    if (state.currentStage.toString() === SeshStage[SeshStage.LOBBY]) {
+
+      this.lobbyState = <LobbyState>state;
+      this.lobbyState.players.forEach(this.checkIfVipExists());
+      this.lobbyState.players.filter((player) => player.playerName === this.playerName)
+        .forEach((player) => {
+
+          this.playerId = player.playerId;
+          this.isVIP = player.vip;
+        });
+
+    } else if (state.currentStage.toString() === SeshStage[SeshStage.MAIN]) {
+
+      this.mainState = <QuizxelMainState>state;
+    }
+
     this.currentStage = state.currentStage;
   }
 
-  private extractState(state: LobbyState): LobbyState {
-
-    if (this.lobbyState !== state) {
-
-      this.currentStage = state.currentStage;
-      this.lobbyState = state;
-      this.players.forEach(player => {
-        if (player.vip) this.needToAskForVip = false;
-      });
-      state.players.filter((player) => player.playerName === this.playerName).forEach((player) => {
-        this.playerId = player.playerId;
-        this.isVIP = player.vip;
-      });
-    }
-    return this.lobbyState;
+  private checkIfVipExists() {
+    return (player: QuizxelPlayer) => {
+      if (player.vip) this.needToAskForVip = false;
+    };
   }
 
   makeVIP(action: SeshAction) {
