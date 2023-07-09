@@ -8,6 +8,11 @@
   text-align: center;
 }
 
+#buzzer.activated{
+
+  background-color: #a13648;
+}
+
 .buzzerContainer{
 
   height: 100%;

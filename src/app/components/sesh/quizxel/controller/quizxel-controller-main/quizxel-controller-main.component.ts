@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {QuizxelMainState} from "../../model/QuizxelMainState";
+import {SeshAction} from "../../../model/action/SeshAction";
 
 @Component({
   selector: 'app-quizxel-controller-main',
@@ -10,4 +11,11 @@ export class QuizxelControllerMainComponent {
 
   @Input() playerId = "";
   @Input() state = <QuizxelMainState>{}
+  @Output() answer = new EventEmitter<SeshAction>()
+
+  buzzer() {
+
+    const action: SeshAction = {type:"buzzer", body:this.playerId}
+    this.answer.emit(action)
+  }
 }
