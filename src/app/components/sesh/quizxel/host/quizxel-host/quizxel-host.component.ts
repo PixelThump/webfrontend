@@ -53,8 +53,7 @@ export class QuizxelHostComponent {
   private handleStateMessage(message: QuizxelStateMessage) {
 
     let state = message.state;
-    state = this.extractState(state)
-    this.currentStage = state.currentStage;
+    this.extractState(state)
   }
 
   private handleErrorMessage(message: QuizxelErrorMessage) {
@@ -64,14 +63,18 @@ export class QuizxelHostComponent {
     this.router.navigateByUrl("/home")
   }
 
-  private extractState(state: LobbyState): LobbyState {
+  private extractState(state: LobbyState| QuizxelMainState){
 
-    if (this.lobbyState !== state) {
+    this.currentStage = state.currentStage;
 
-      this.currentStage = state.currentStage;
-      this.lobbyState = state;
+    if (state.currentStage.toString() === SeshStage[SeshStage.LOBBY]) {
+
+      this.lobbyState = <LobbyState>state;
+
+    } else if (state.currentStage.toString() === SeshStage[SeshStage.MAIN]) {
+
+      this.mainState = <QuizxelMainState>state
     }
-    return this.lobbyState;
   }
 
   goFullScreen(screen: HTMLDivElement) {
