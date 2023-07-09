@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {SeshAction} from "../../model/action/SeshAction";
 
 @Component({
   selector: 'app-controller-lobby',
@@ -9,8 +10,10 @@ export class ControllerLobbyComponent {
   @Input() seshCode?: string;
   @Input() isVip = false;
   @Input() needToAskForVip = true;
+  @Input() playerId = "";
   @Output() startSesh: EventEmitter<any> = new EventEmitter<any>();
-  @Output() makeVip: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() makeVip: EventEmitter<SeshAction> = new EventEmitter<SeshAction>();
+
 
 
   emitStartSesh() {
@@ -20,12 +23,14 @@ export class ControllerLobbyComponent {
 
   emmitMakeVIPEvent() {
 
-    this.makeVip.emit(true);
+    const action:SeshAction = {type:"makeVip", body: this.playerId}
+    this.makeVip.emit(action);
   }
 
   declineVip() {
 
-    this.makeVip.emit(false);
+    const action:SeshAction = {type:"makeVip", body: false}
+    this.makeVip.emit(action);
   }
 
 
