@@ -16,7 +16,6 @@ import {Subscription} from "rxjs";
 })
 export class QuizxelHostComponent {
 
-  initializing = true
   currentStage: SeshStage = SeshStage.LOBBY;
   fullScreenMode = false;
   lobbyState = <LobbyState>{};
@@ -43,8 +42,6 @@ export class QuizxelHostComponent {
 
             this.handleErrorMessage(<QuizxelErrorMessage>message)
           }
-
-          this.initializing = false
         })
       }
     )
@@ -59,7 +56,7 @@ export class QuizxelHostComponent {
   private handleErrorMessage(message: QuizxelErrorMessage) {
 
     this.subscription.unsubscribe()
-    console.log(message)
+    console.error(message)
     this.router.navigateByUrl("/home")
   }
 
