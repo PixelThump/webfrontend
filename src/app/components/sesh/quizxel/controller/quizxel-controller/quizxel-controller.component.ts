@@ -90,7 +90,7 @@ export class QuizxelControllerComponent {
 
   makeVIP(action: SeshAction) {
 
-    if (action.body !== false) {
+    if (action.body === true) {
 
       const makeVIPCommand: SeshCommand = {action: action}
       this.seshService.sendCommand(makeVIPCommand, this.seshCode)
@@ -99,17 +99,16 @@ export class QuizxelControllerComponent {
     this.needToAskForVip = false
   }
 
+  startSesh(action: SeshAction) {
+
+    const command: SeshCommand = {action: action}
+    this.seshService.sendCommand(command, this.seshCode);
+  }
+
   private handleErrorMessage(message: QuizxelErrorMessage) {
 
     this.subscription.unsubscribe()
     console.log(message)
     this.router.navigateByUrl("/home")
-  }
-
-  startSesh(value: boolean) {
-
-    const startSeshAction: SeshAction = {type: "startSesh", body: undefined};
-    const command: SeshCommand = {action: startSeshAction}
-    this.seshService.sendCommand(command, this.seshCode);
   }
 }

@@ -11,14 +11,15 @@ export class ControllerLobbyComponent {
   @Input() isVip = false;
   @Input() needToAskForVip = true;
   @Input() playerId = "";
-  @Output() startSesh: EventEmitter<any> = new EventEmitter<any>();
+  @Output() startSesh: EventEmitter<SeshAction> = new EventEmitter<any>();
   @Output() makeVip: EventEmitter<SeshAction> = new EventEmitter<SeshAction>();
 
 
 
   emitStartSesh() {
 
-    this.startSesh.emit();
+    const action: SeshAction = {type:"startSesh", body:true}
+    this.startSesh.emit(action);
   }
 
   emmitMakeVIPEvent() {
