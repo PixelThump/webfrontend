@@ -8,7 +8,7 @@ import {SeshCommand} from "../../../model/SeshCommand";
 import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
 import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
-import {Action} from "../../../model/action/Action";
+import {SeshAction} from "../../../model/action/SeshAction";
 
 
 @Component({
@@ -75,23 +75,27 @@ export class QuizxelControllerComponent {
     });
   }
 
-  makeVIP(value: boolean) {
+  makeVIP(action: SeshAction) {
 
+    if (action.body !== false) {
 
-    const makeVipAction: Action = {body: this.playerId, type: "makeVip"}
-    const makeVIPCommand: SeshCommand = {action: makeVipAction}
-    this.seshService.sendCommand(makeVIPCommand, this.seshCode)
+      const makeVIPCommand: SeshCommand = {action: action}
+      this.seshService.sendCommand(makeVIPCommand, this.seshCode)
+    }
+
+    this.needToAskForVip = false
   }
 
   private handleErrorMessage(message: QuizxelErrorMessage) {
 
     this.subscription.unsubscribe()
+    console.log(message)
     this.router.navigateByUrl("/home")
   }
 
   startSesh(value: boolean) {
 
-    const startSeshAction: Action = {type: "startSesh", body: undefined};
+    const startSeshAction: SeshAction = {type: "startSesh", body: undefined};
     const command: SeshCommand = {action: startSeshAction}
     this.seshService.sendCommand(command, this.seshCode);
   }

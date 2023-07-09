@@ -51,9 +51,11 @@ export class QuizxelHostComponent {
 
   private extractState(state: LobbyState) {
 
-    this.currentStage = state.currentStage;
-    this.lobbyState = state;
+    if (this.lobbyState !== state) {
 
+      this.currentStage = state.currentStage;
+      this.lobbyState = state;
+    }
   }
 
   goFullScreen(screen: HTMLDivElement) {

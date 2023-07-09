@@ -1,4 +1,4 @@
-export interface Action {
+export interface SeshAction {
   body: any
   type: string
 }

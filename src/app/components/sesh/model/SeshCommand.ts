@@ -1,5 +1,5 @@
-import {Action} from "./action/Action";
+import {SeshAction} from "./action/SeshAction";
 
 export interface SeshCommand {
-  action: Action
+  action: SeshAction
 }
