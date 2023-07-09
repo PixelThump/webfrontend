@@ -90,9 +90,9 @@ export class QuizxelControllerComponent {
 
   makeVIP(action: SeshAction) {
 
-    if (action.body === true) {
+    if (action.body !== undefined) {
 
-      const makeVIPCommand: SeshCommand = {action: action}
+      const makeVIPCommand: SeshCommand = {playerId: this.playerId, action: action}
       this.seshService.sendCommand(makeVIPCommand, this.seshCode)
     }
 
@@ -101,8 +101,14 @@ export class QuizxelControllerComponent {
 
   startSesh(action: SeshAction) {
 
-    const command: SeshCommand = {action: action}
+    const command: SeshCommand = {playerId: this.playerId, action: action}
     this.seshService.sendCommand(command, this.seshCode);
+  }
+
+  answerQuestion(action: SeshAction) {
+
+    const command: SeshCommand = {playerId: this.playerId, action:action}
+    this.seshService.sendCommand(command, this.seshCode)
   }
 
   private handleErrorMessage(message: QuizxelErrorMessage) {

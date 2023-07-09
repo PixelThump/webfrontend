@@ -1,11 +1,9 @@
-import {QuizxelPlayer} from "./QuizxelPlayer";
 import {QuizxelQuestion} from "./question/QuizxelQuestion";
-import {SeshStage} from "../../model/SeshStage";
+import {LobbyState} from "./LobbyState";
 
-export interface QuizxelMainState {
+export interface QuizxelMainState extends LobbyState{
 
-  players: QuizxelPlayer[]
   currentQuestion: QuizxelQuestion
-  currentStage: SeshStage
-  maxPlayers: number
+  buzzedPlayerId: string
+  showQuestion: boolean
 }

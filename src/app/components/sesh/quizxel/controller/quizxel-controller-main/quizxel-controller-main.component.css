@@ -1,0 +1,17 @@
+#buzzer{
+
+  width: 50%;
+  padding-bottom: 50%;
+  border-radius: 50%;
+  background-color: #c8112f;
+  color: white;
+  text-align: center;
+}
+
+.buzzerContainer{
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
