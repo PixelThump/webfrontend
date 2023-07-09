@@ -21,9 +21,7 @@ import {QuizxelMainState} from "../../model/QuizxelMainState";
 export class QuizxelControllerComponent {
 
   seshCode = ""
-  initializing = true
   players: QuizxelPlayer[] = []
-  maxPlayers: number = 5;
   currentStage: SeshStage = SeshStage.LOBBY;
   playerName = ""
   playerId = ""
@@ -55,8 +53,6 @@ export class QuizxelControllerComponent {
 
             this.handleErrorMessage(<QuizxelErrorMessage>message)
           }
-
-          this.initializing = false
         })
       }
     )
@@ -64,18 +60,26 @@ export class QuizxelControllerComponent {
 
   private handleStateMessage(message: QuizxelStateMessage) {
 
-    const state = message.state;
-    console.log(state)
-    this.players = state.players;
-    this.maxPlayers = state.maxPlayers;
+    let state = message.state;
+    state = this.extractState(state)
     this.currentStage = state.currentStage;
-    this.players.forEach(player => {
-      if (player.vip) this.needToAskForVip = false;
-    });
-    state.players.filter((player) => player.playerName === this.playerName).forEach((player) => {
-      this.playerId = player.playerId;
-      this.isVIP = player.vip;
-    });
+  }
+
+  private extractState(state: LobbyState): LobbyState {
+
+    if (this.lobbyState !== state) {
+
+      this.currentStage = state.currentStage;
+      this.lobbyState = state;
+      this.players.forEach(player => {
+        if (player.vip) this.needToAskForVip = false;
+      });
+      state.players.filter((player) => player.playerName === this.playerName).forEach((player) => {
+        this.playerId = player.playerId;
+        this.isVIP = player.vip;
+      });
+    }
+    return this.lobbyState;
   }
 
   makeVIP(action: SeshAction) {

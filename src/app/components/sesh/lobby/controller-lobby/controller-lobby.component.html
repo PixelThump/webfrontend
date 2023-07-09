@@ -12,7 +12,7 @@
   <div class="row">
     <h2 class="col-12">{{seshCode}}</h2>
   </div>
-  <div class="row">
+  <div class="row textRow">
     <p>You joined successfully!<br>
       <span *ngIf="!isVip">Please wait for the VIP to start the Sesh</span>
     </p>
@@ -20,8 +20,8 @@
   <div class="row" *ngIf="isVip">
     <button (click)="emitStartSesh()">Start Sesh</button>
   </div>
-  <div class="row">
-    <div class="col-12">
+  <div class="row" >
+    <div class="col-12" id="warning">
       <p>Please do <b>not</b>:</p>
       <ul>
         <li>Exit this page</li>

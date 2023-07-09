@@ -21,7 +21,7 @@ export class QuizxelHostComponent {
   fullScreenMode = false;
   lobbyState = <LobbyState>{};
   mainState = <QuizxelMainState>{};
-  private subscription: Subscription;
+  private subscription: Subscription = <Subscription>{};
 
 
   constructor(private seshService: SheshServiceService, private route: ActivatedRoute, private router: Router) {
