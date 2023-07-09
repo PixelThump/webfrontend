@@ -1,12 +1,17 @@
 #playerRow{
 
-  min-height: 100%;
   display: flex;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .container{
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 #seshCode{

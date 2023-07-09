@@ -5,5 +5,5 @@ text-align: center;
 
 .playerIcon{
 
-  max-height: calc((100vh - 250px) / 4);
+  max-height: calc((100vh - 57px - 38px) / 5);
 }
