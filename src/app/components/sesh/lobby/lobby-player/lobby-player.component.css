@@ -7,3 +7,8 @@ text-align: center;
 
   max-height: calc((100vh - 57px - 38px) / 5);
 }
+
+.playerName, .playerPoints{
+
+  margin: 5px 0;
+}

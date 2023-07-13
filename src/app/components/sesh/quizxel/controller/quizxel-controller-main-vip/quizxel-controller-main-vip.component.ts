@@ -31,4 +31,10 @@ export class QuizxelControllerMainVipComponent {
     const action: SeshAction = {type: "nextQuestion", body: undefined}
     this.seshAction.emit(action);
   }
+
+  showAnswer(show: boolean) {
+
+    const action: SeshAction = {type:"showAnswer", body: show};
+    this.seshAction.emit(action);
+  }
 }

@@ -1,9 +1,14 @@
-<div id="questionContainer" *ngIf="showQuestion">
-  <h2 id="questionText">{{currentQuestion.questionText}}</h2>
-</div>
+<div id="container">
+  <div id="questionContainer">
+    <h2 id="questionText" *ngIf="showQuestion">{{currentQuestion.questionText}}</h2>
+    <h2 id="questionAnswer" *ngIf="showAnswer">{{currentQuestion.questionAnswer}}</h2>
+  </div>
 
-<div *ngIf="currentQuestion.type === 'BUZZER' && buzzeredPlayer" id="buzzeredPlayer">
-  <app-lobby-player [player]="buzzeredPlayer"></app-lobby-player>
-</div>
+  <div *ngIf="currentQuestion.type === 'BUZZER' && buzzeredPlayer" id="buzzeredPlayer" class="row">
+    <app-lobby-player [player]="buzzeredPlayer"></app-lobby-player>
+  </div>
 
-<div class="row"><app-lobby-player *ngFor="let player of controllerPlayers" [showPoints]="true" [player]="player"></app-lobby-player></div>
+  <div class="row" id="players">
+    <app-lobby-player *ngFor="let player of controllerPlayers" [showPoints]="true" [player]="player"></app-lobby-player>
+  </div>
+</div>
