@@ -99,22 +99,16 @@ export class QuizxelControllerComponent {
     this.needToAskForVip = false
   }
 
-  startSesh(action: SeshAction) {
-
-    const command: SeshCommand = {playerId: this.playerId, action: action}
-    this.seshService.sendCommand(command, this.seshCode);
-  }
-
-  answerQuestion(action: SeshAction) {
-
-    const command: SeshCommand = {playerId: this.playerId, action:action}
-    this.seshService.sendCommand(command, this.seshCode)
-  }
-
   private handleErrorMessage(message: QuizxelErrorMessage) {
 
     this.subscription.unsubscribe()
     console.log(message)
     this.router.navigateByUrl("/home")
+  }
+
+  handleAction(action: SeshAction) {
+
+    const command: SeshCommand = {playerId: this.playerId, action:action}
+    this.seshService.sendCommand(command, this.seshCode)
   }
 }

@@ -11,28 +11,24 @@ export class ControllerLobbyComponent {
   @Input() isVip = false;
   @Input() needToAskForVip = true;
   @Input() playerId = "";
-  @Output() startSesh: EventEmitter<SeshAction> = new EventEmitter<any>();
-  @Output() makeVip: EventEmitter<SeshAction> = new EventEmitter<SeshAction>();
-
-
+  @Output() seshAction: EventEmitter<SeshAction> = new EventEmitter();
+  @Output() makeVIP: EventEmitter<SeshAction> = new EventEmitter();
 
   emitStartSesh() {
 
-    const action: SeshAction = {type:"startSesh", body:true}
-    this.startSesh.emit(action);
+    const action: SeshAction = {type: "startSesh", body: true}
+    this.seshAction.emit(action);
   }
 
   emmitMakeVIPEvent() {
 
-    const action:SeshAction = {type:"makeVip", body: this.playerId}
-    this.makeVip.emit(action);
+    const action: SeshAction = {type: "makeVip", body: this.playerId}
+    this.makeVIP.emit(action);
   }
 
   declineVip() {
 
-    const action:SeshAction = {type:"makeVip", body: false}
-    this.makeVip.emit(action);
+    const action: SeshAction = {type: "makeVip", body: false}
+    this.makeVIP.emit(action);
   }
-
-
 }
