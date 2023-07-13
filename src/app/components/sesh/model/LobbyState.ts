@@ -1,5 +1,5 @@
-import {SeshStage} from "../../model/SeshStage";
-import {QuizxelPlayer} from "./QuizxelPlayer";
+import {SeshStage} from "./SeshStage";
+import {QuizxelPlayer} from "../quizxel/model/QuizxelPlayer";
 
 
 export interface LobbyState {

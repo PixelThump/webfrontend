@@ -1,4 +1,12 @@
 <div class="row">
   <button type="button" (click)="freeBuzzer(true)">Correct Answer</button>
+  <button type="button" (click)="freeBuzzer(undefined)">Free buzzer</button>
   <button type="button" (click)="freeBuzzer(false)">Wrong Answer</button>
+</div>
+<div class="row">
+  <button type="button" (click)="showQuestion(true)">Show Question</button>
+  <button type="button" (click)="showQuestion(false)">Hide Question</button>
+</div>
+<div class="row">
+  <button type="button" (click)="nextQuestion()">Next Question</button>
 </div>

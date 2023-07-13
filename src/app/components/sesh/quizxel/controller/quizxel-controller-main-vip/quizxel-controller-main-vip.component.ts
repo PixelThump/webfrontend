@@ -19,4 +19,16 @@ export class QuizxelControllerMainVipComponent {
     const action: SeshAction = {type: "freeBuzzer", body: answerCorrect};
     this.seshAction.emit(action);
   }
+
+  showQuestion(show: boolean) {
+
+    const action: SeshAction = {type:"showQuestion", body: show};
+    this.seshAction.emit(action);
+  }
+
+  nextQuestion() {
+
+    const action: SeshAction = {type: "nextQuestion", body: undefined}
+    this.seshAction.emit(action);
+  }
 }

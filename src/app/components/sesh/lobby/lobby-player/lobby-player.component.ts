@@ -8,4 +8,5 @@ import {SeshPlayer} from "../../model/SeshPlayer";
 })
 export class LobbyPlayerComponent {
   @Input() player?: SeshPlayer;
+  @Input() showPoints = false;
 }

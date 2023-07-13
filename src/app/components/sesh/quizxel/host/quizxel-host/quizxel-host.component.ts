@@ -3,7 +3,7 @@ import {SheshServiceService} from "../../../../../service/shesh-service.service"
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizxelStateMessage} from "../../model/message/QuizxelStateMessage";
 import {SeshStage} from "../../../model/SeshStage";
-import {LobbyState} from "../../model/LobbyState";
+import {LobbyState} from "../../../model/LobbyState";
 import {QuizxelMainState} from "../../model/QuizxelMainState";
 import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";

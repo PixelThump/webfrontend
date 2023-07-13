@@ -7,7 +7,7 @@ import {SeshCommand} from "../../../model/SeshCommand";
 import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
 import {SeshAction} from "../../../model/action/SeshAction";
-import {LobbyState} from "../../model/LobbyState";
+import {LobbyState} from "../../../model/LobbyState";
 import {QuizxelMainState} from "../../model/QuizxelMainState";
 import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 

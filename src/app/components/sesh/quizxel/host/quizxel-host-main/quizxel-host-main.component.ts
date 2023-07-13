@@ -16,6 +16,7 @@ export class QuizxelHostMainComponent implements OnChanges {
   players: QuizxelPlayer[] = []
   buzzedPlayerId = ""
   buzzeredPlayer?: QuizxelPlayer
+  controllerPlayers: QuizxelPlayer[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -26,11 +27,18 @@ export class QuizxelHostMainComponent implements OnChanges {
     this.showQuestion = currentState.showQuestion;
     this.players = currentState.players;
     this.buzzedPlayerId = currentState.buzzedPlayerId
+    this.buzzeredPlayer = undefined;
+    this.controllerPlayers = []
     this.players.forEach(player => {
 
       if (player.playerId === currentState.buzzedPlayerId) {
 
         this.buzzeredPlayer = player
+      }
+
+      if (!player.vip){
+
+        this.controllerPlayers.push(player);
       }
     })
 

@@ -1,4 +1,4 @@
-import {LobbyState} from "../LobbyState";
+import {LobbyState} from "../../../model/LobbyState";
 
 export interface QuizxelStateMessage {
 

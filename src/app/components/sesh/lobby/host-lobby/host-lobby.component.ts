@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LobbyState} from "../../quizxel/model/LobbyState";
+import {LobbyState} from "../../model/LobbyState";
 import {QuizxelPlayer} from "../../quizxel/model/QuizxelPlayer";
 
 @Component({
