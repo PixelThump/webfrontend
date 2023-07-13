@@ -11,11 +11,11 @@ export class QuizxelControllerMainComponent {
 
   @Input() playerId = "";
   @Input() state = <QuizxelMainState>{}
-  @Output() answer = new EventEmitter<SeshAction>()
+  @Output() seshAction = new EventEmitter<SeshAction>()
 
   buzzer() {
 
     const action: SeshAction = {type:"buzzer", body:this.playerId}
-    this.answer.emit(action)
+    this.seshAction.emit(action)
   }
 }
