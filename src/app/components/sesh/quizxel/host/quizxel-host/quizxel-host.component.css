@@ -18,6 +18,7 @@
   background: rgba(20,20,20,0.1);
   border: none;
   border-radius: 10px;
+  padding: 5px;
 }
 
 #leaveFullScreenButton{

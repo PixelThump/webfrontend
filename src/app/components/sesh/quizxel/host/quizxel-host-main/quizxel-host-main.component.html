@@ -1,7 +1,7 @@
-<div id="questionContainer" *ngIf="state.showQuestion">
-  <h2 id="questionText">{{state.currentQuestion.questionText}}</h2>
+<div id="questionContainer" *ngIf="showQuestion">
+  <h2 id="questionText">{{currentQuestion.questionText}}</h2>
 </div>
 
-<div *ngIf="state.currentQuestion.type === 'BUZZER' && buzzeredPlayer" id="buzzeredPlayer">
+<div *ngIf="currentQuestion.type === 'BUZZER' && buzzeredPlayer" id="buzzeredPlayer">
   <app-lobby-player [player]="buzzeredPlayer"></app-lobby-player>
 </div>
