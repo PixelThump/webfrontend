@@ -6,4 +6,5 @@
                              [state]="mainState" (seshAction)="handleAction($event)"></app-quizxel-controller-main>
 
 <app-quizxel-controller-main-vip *ngIf="currentStage.toString() === 'MAIN' && isVIP" [playerId]="playerId"
-                                 [state]="mainState"></app-quizxel-controller-main-vip>
+                                 [state]="mainState"
+                                 (seshAction)="handleAction($event)"></app-quizxel-controller-main-vip>

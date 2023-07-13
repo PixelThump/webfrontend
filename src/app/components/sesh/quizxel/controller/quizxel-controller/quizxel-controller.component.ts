@@ -107,7 +107,7 @@ export class QuizxelControllerComponent {
   }
 
   handleAction(action: SeshAction) {
-
+    console.log(action)
     const command: SeshCommand = {playerId: this.playerId, action:action}
     this.seshService.sendCommand(command, this.seshCode)
   }
