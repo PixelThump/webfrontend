@@ -1,17 +1,8 @@
-#stage 1
-# Pull node
-FROM node:18-alpine as node
-# Create working directory
+FROM node:18-alpine AS build
 WORKDIR /app
-# Copy full application code into working directory
-COPY . .
-# Install all dependencies of angular application
+COPY package*.json ./
 RUN npm install
-# Build Angular application
+COPY . .
 RUN npm run build
-# stage 2
-# Pull nginx for angular hosting
-FROM nginx:alpine
-CMD ["ls"]
-# Copy angular target folder (dist) into the static hosting path of nginx
-COPY --from=node /app/dist/pixelvibe /usr/share/nginx/html
+EXPOSE 4200
+CMD ["npm", "start"]
