@@ -21,7 +21,7 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: roboter5123/seshservice
+          image: roboter5123/pixelvibefrontend
           tags: dev
           registry: ghcr.io
           dockerfile: Dockerfile
