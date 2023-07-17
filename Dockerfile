@@ -13,4 +13,4 @@ RUN npm run build
 # Pull nginx for angular hosting
 FROM nginx:alpine
 # Copy angular target folder (dist) into the static hosting path of nginx
-COPY --from=node /app/dist/my-dockerized-angular /usr/share/nginx/html
+COPY --from=node /app/dist/pixelvibe /usr/share/nginx/html
