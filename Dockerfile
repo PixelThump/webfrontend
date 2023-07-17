@@ -12,5 +12,6 @@ RUN npm run build
 # stage 2
 # Pull nginx for angular hosting
 FROM nginx:alpine
+CMD ["ls"]
 # Copy angular target folder (dist) into the static hosting path of nginx
 COPY --from=node /app/dist/pixelvibe /usr/share/nginx/html
