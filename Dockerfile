@@ -1,6 +1,6 @@
 #stage 1
 # Pull node
-FROM node:fermium-buster as node
+FROM node:18-alpine as node
 # Create working directory
 WORKDIR /app
 # Copy full application code into working directory
