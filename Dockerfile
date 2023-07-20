@@ -1,6 +1,6 @@
 #stage 1
 # Pull node
-FROM node:18-alpine as node
+FROM node:18-alpine AS node
 # Create working directory
 WORKDIR /app
 # Copy full application code into working directory
