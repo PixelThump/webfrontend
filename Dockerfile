@@ -7,8 +7,7 @@ WORKDIR /app
 COPY . .
 # Install all dependencies of angular application
 RUN npm install
-# Build Angular application
-RUN npm run build
+RUN npm run build --configuration production
 # stage 2
 # Pull nginx for angular hosting
 FROM nginx:alpine

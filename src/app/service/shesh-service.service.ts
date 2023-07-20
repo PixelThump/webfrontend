@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {IMessage, RxStomp} from "@stomp/rx-stomp";
 import {Observable} from "rxjs";
 import {SeshCommand} from "../components/sesh/model/SeshCommand";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {SeshCommand} from "../components/sesh/model/SeshCommand";
 export class SheshServiceService {
 
   private rxStomp = new RxStomp();
-  private baseUrl = "ws://pixelvibe.roboter5123.com/api"
+  private baseUrl = "ws:"+ environment.apiUrl
   private topicPath = "/topic/sesh"
   private stompconfig = {brokerURL: this.baseUrl + '/ws'}
 
