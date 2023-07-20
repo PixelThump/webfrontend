@@ -7,5 +7,6 @@
   <div *ngFor="let seshType of seshTypes" class="card col-4" (click)="hostGame(seshType)" tabindex="50">
     {{seshType}}
   </div>
+  <div *ngIf="seshTypes.length == 0">No seshtypes supported by this version are available on the backend</div>
 </div>
 
