@@ -1,8 +1,15 @@
-FROM node:18-alpine AS build
+#stage 1
+# Pull node
+FROM node:18-alpine AS node
+# Create working directory
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+# Copy full application code into working directory
 COPY . .
+# Install all dependencies of angular application
+RUN npm install
 RUN npm run build --configuration production
-EXPOSE 4200
-CMD ["npm", "start"]
+# stage 2
+# Pull nginx for angular hosting
+FROM nginx:alpine
+# Copy angular target folder (dist) into the static hosting path of nginx
+COPY --from=node /app/dist/frontend /usr/share/nginx/html
