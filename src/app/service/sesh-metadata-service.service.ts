@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 })
 export class SeshMetadataServiceService {
 
-  private backendUrl = environment.apiProtocol + environment.apiUrl
+  private backendUrl = "https://" + "pixelvibe.roboter5123.com/api"
 
   constructor(private http: HttpClient) {
   }
