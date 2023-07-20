@@ -4,8 +4,8 @@
   </h2>
 </div>
 <div class="row">
-  <button *ngFor="let seshType of seshTypes" class="card col-4" (click)="hostGame(seshType)" tabindex="50">
+  <div *ngFor="let seshType of seshTypes" class="card col-4" (click)="hostGame(seshType)" tabindex="50">
     {{seshType}}
-  </button>
+  </div>
 </div>
 

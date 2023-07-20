@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SeshMetadataServiceService} from "../../service/sesh-metadata-service.service";
 import {Router} from "@angular/router";
 import {Sesh} from "../../model/Sesh";
+import {environment} from "../../../environments/environment"
 
 @Component({
   selector: 'app-host',
@@ -11,13 +12,17 @@ import {Sesh} from "../../model/Sesh";
 export class HostComponent implements OnInit {
 
   seshTypes: string[] = []
+  supportedSeshTypes: string[] = environment.supportedSeshTypes
 
   constructor(private metadataService: SeshMetadataServiceService, private router: Router) {
   }
 
   ngOnInit(): void {
 
-    this.metadataService.getSeshTypes().subscribe((seshTypes: string[]) => this.seshTypes = seshTypes)
+    this.metadataService.getSeshTypes().subscribe((backendSeshTypes: string[]) => {
+
+      this.seshTypes = backendSeshTypes.filter((backendSeshType) => this.supportedSeshTypes.includes(backendSeshType));
+    })
   }
 
   hostGame(seshType: string) {
