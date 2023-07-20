@@ -1,0 +1,21 @@
+#questionText, #questionAnswer {
+  text-align: center;
+}
+
+#questionContainer{
+
+  height: 25%;
+}
+
+#players, #buzzeredPlayer{
+
+  height: fit-content;
+}
+
+#container{
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -1,0 +1,4 @@
+app-quizxel {
+  display: block;
+  height: calc(100vh - 57px - 38px - 20px);
+}

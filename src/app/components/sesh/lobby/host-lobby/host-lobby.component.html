@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <h3 class="col-4" id="seshCode">{{state.seshCode}}</h3>
+    <div class="col-4"></div>
+  </div>
+  <div class="row" id="playerRow">
+    <div *ngFor="let player of state.players" class="col-6">
+      <app-lobby-player [player]="player"></app-lobby-player>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-10"></div>
+    <div id="playerCount" class="col-2">Players {{state.players.length}} / {{state.maxPlayers}}</div>
+  </div>
+</div>

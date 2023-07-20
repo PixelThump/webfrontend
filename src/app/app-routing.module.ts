@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from "./Pages/home-page/home-page.component";
 import {HostPageComponent} from "./Pages/host-page/host-page.component";
-import {ChatPageComponent} from "./Pages/chat-page/chat-page.component";
 import {JoinPageComponent} from "./Pages/join-page/join-page.component";
+import {QuizxelPageComponent} from "./pages/quizxel-page/quizxel-page.component";
 
 const routes: Routes = [
 
@@ -19,17 +19,17 @@ const routes: Routes = [
   },
   {
     path: 'host',
-    component:HostPageComponent,
+    component: HostPageComponent,
     pathMatch: 'full'
   },
   {
     path: 'join',
-    component:JoinPageComponent,
+    component: JoinPageComponent,
     pathMatch: 'full'
   },
   {
-    path: 'chat/:seshCode/player/:playerName',
-    component:ChatPageComponent,
+    path: 'quizxel/:seshCode/player/:playerName',
+    component: QuizxelPageComponent,
     pathMatch: 'prefix'
   }
 ];
@@ -38,4 +38,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
