@@ -13,3 +13,4 @@ RUN npm run buildProd
 FROM nginx:alpine
 # Copy angular target folder (dist) into the static hosting path of nginx
 COPY --from=node /app/dist/frontend /usr/share/nginx/html
+COPY nginx.conf /etc/nginx
