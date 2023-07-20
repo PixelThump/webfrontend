@@ -9,7 +9,7 @@ import {SeshCommand} from "../components/sesh/model/SeshCommand";
 export class SheshServiceService {
 
   private rxStomp = new RxStomp();
-  private baseUrl = "ws://localhost:8080"
+  private baseUrl = "ws://pixelvibe.roboter5123.com/api"
   private topicPath = "/topic/sesh"
   private stompconfig = {brokerURL: this.baseUrl + '/ws'}
 

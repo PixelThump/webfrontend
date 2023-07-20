@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: "",
+  apiUrl: "pixelvibe.roboter5123.com/api",
   apiProtocol: "https://"
 };
