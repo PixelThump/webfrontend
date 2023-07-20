@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 })
 export class SeshMetadataServiceService {
 
-  private backendUrl = "http://" + environment.apiUrl
+  private backendUrl = environment.apiProtocol + environment.apiUrl
 
   constructor(private http: HttpClient) {
   }
