@@ -17,6 +17,7 @@ export class SheshServiceService {
 
   constructor() {
 
+    console.log(this.baseUrl);
     this.rxStomp.configure(this.stompconfig)
     this.rxStomp.activate()
   }
