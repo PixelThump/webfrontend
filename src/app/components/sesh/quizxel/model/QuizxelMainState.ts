@@ -1,5 +1,5 @@
 import {QuizxelQuestion} from "./question/QuizxelQuestion";
-import {LobbyState} from "../../model/LobbyState";
+import {LobbyState} from "../../model/state/LobbyState";
 
 export interface QuizxelMainState extends LobbyState{
 

@@ -28,7 +28,13 @@ export class QuizxelControllerMainVipComponent {
 
   nextQuestion() {
 
-    const action: SeshAction = {type: "nextQuestion", body: undefined}
+    const action: SeshAction = {type: "nextQuestion", body: "next"}
+    this.seshAction.emit(action);
+  }
+
+  prevQuestion(){
+
+    const action: SeshAction = {type: "nextQuestion", body: "prev"}
     this.seshAction.emit(action);
   }
 

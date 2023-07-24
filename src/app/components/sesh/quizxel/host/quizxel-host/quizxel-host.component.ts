@@ -3,10 +3,11 @@ import {SheshServiceService} from "../../../../../service/shesh-service.service"
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizxelStateMessage} from "../../model/message/QuizxelStateMessage";
 import {SeshStage} from "../../../model/SeshStage";
-import {LobbyState} from "../../../model/LobbyState";
+import {LobbyState} from "../../../model/state/LobbyState";
 import {QuizxelMainState} from "../../model/QuizxelMainState";
 import {QuizxelErrorMessage} from "../../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
+import {LobbyHostState} from "../../../model/state/LobbyHostState";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class QuizxelHostComponent {
 
   currentStage: SeshStage = SeshStage.LOBBY;
   fullScreenMode = false;
-  lobbyState = <LobbyState>{};
+  lobbyState = <LobbyHostState>{};
   mainState = <QuizxelMainState>{};
   private subscription: Subscription = <Subscription>{};
 
@@ -66,7 +67,7 @@ export class QuizxelHostComponent {
 
     if (state.currentStage.toString() === SeshStage[SeshStage.LOBBY]) {
 
-      this.lobbyState = <LobbyState>state;
+      this.lobbyState = <LobbyHostState>state;
 
     } else if (state.currentStage.toString() === SeshStage[SeshStage.MAIN]) {
 
