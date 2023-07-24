@@ -15,3 +15,8 @@
   <button type="button" (click)="prevQuestion()">Previous Question</button>
   <button type="button" (click)="nextQuestion()">Next Question</button>
 </div>
+
+<div id="question" class="row">
+  <div id="questionText"><span>Question: </span>{{state.currentQuestion.questionText}}</div>
+  <div id="questionAnswer"><span>Answer: </span>{{state.currentQuestion.questionAnswer}}</div>
+</div>
