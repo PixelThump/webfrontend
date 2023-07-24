@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 export class SheshServiceService {
 
   private rxStomp = new RxStomp();
-  private baseUrl = "ws:"+ environment.apiUrl
+  private baseUrl = environment.socketProtocol + environment.apiUrl
   private topicPath = "/topic/sesh"
   private stompconfig = {brokerURL: this.baseUrl + '/ws'}
 

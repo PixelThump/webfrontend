@@ -4,5 +4,6 @@ export const environment: IEnvironment = {
   production: false,
   apiUrl: "",
   apiProtocol: "",
+  socketProtocol: "",
   supportedSeshTypes: [""]
 };
