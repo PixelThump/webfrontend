@@ -28,4 +28,4 @@ jobs:
           registry: ghcr.io
           dockerfile: Dockerfile
           username: ${{ secrets.GHRC_USERNAME }}
-          password: ${{ secrets.PACKAGES_GITHUB_KEY }}
+          password: ${{ secrets.GITHUB_TOKEN }}
