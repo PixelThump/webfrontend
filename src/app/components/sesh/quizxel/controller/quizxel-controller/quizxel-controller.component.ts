@@ -38,7 +38,7 @@ export class QuizxelControllerComponent {
         this.seshCode = <string>params.get("seshCode")
         this.playerName = <string>params.get("playerName")
 
-        this.subscription = this.seshService.joinSeshAsController(this.seshCode, this.playerName).subscribe(iMessage => {
+        this.subscription = this.seshService.joinSeshAsController(this.seshCode, this.playerName, "quizxel").subscribe(iMessage => {
 
           const message = JSON.parse(iMessage.body)
 

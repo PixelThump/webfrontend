@@ -5,5 +5,5 @@ export const environment: IEnvironment = {
   apiUrl: "localhost:8080",
   apiProtocol: "http://",
   socketProtocol: "ws:",
-  supportedSeshTypes: ["QUIZXEL"]
+  supportedSeshTypes: ["quizxel"]
 };
