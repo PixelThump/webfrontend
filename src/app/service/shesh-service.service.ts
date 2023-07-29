@@ -22,26 +22,26 @@ export class SheshServiceService {
     this.rxStomp.activate()
   }
 
-  joinSeshAsHost(seshCode: string): Observable<IMessage> {
+  joinSeshAsHost(seshCode: string, seshtype: string): Observable<IMessage> {
 
-    const path = this.topicPath + "/" + seshCode + "/host"
+    const path = this.baseUrl + "/" + seshtype + this.topicPath + "/" + seshCode + "/host"
 
     const options = {destination: path}
     return this.rxStomp.watch(options)
   }
 
-  joinSeshAsController(seshCode: string, playerName: string): Observable<IMessage> {
+  joinSeshAsController(seshCode: string, playerName: string, seshtype: string): Observable<IMessage> {
 
-    const path = this.topicPath + "/" + seshCode + "/controller"
+    const path = this.baseUrl + "/" + seshtype + this.topicPath + "/" + seshCode + "/controller"
     const headers = {'playerName': playerName}
 
     const options = {destination: path, subHeaders: headers, headers: headers}
     return this.rxStomp.watch(options)
   }
 
-  sendCommand(command: SeshCommand, seshCode: string) {
+  sendCommand(command: SeshCommand, seshCode: string, seshtype: string) {
 
-    const path = this.topicPath + "/" + seshCode
+    const path = this.baseUrl + "/" + seshtype + this.topicPath + "/" + seshCode
     const options = {destination: path, body: JSON.stringify({command: command})}
     return this.rxStomp.publish(options)
   }
