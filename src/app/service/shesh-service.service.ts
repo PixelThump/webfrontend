@@ -12,26 +12,24 @@ export class SheshServiceService {
   private rxStomp = new RxStomp();
   private baseUrl = environment.socketProtocol + environment.apiUrl
   private topicPath = "/topic/sesh"
-  private stompconfig = {brokerURL: this.baseUrl + '/ws'}
+  private stompconfig = {brokerURL: this.baseUrl + "/quizxel" +'/ws'}
 
-
-  constructor() {
-
-    console.log(this.baseUrl);
+  joinSeshAsHost(seshCode: string, seshtype: string): Observable<IMessage> {
+    this.stompconfig.brokerURL = this.baseUrl + "/" + seshtype + "/ws"
+    console.log(this.stompconfig.brokerURL)
     this.rxStomp.configure(this.stompconfig)
     this.rxStomp.activate()
-  }
-
-  joinSeshAsHost(seshCode: string): Observable<IMessage> {
-
     const path = this.topicPath + "/" + seshCode + "/host"
-
+    console.log(path)
     const options = {destination: path}
     return this.rxStomp.watch(options)
   }
 
-  joinSeshAsController(seshCode: string, playerName: string): Observable<IMessage> {
-
+  joinSeshAsController(seshCode: string, playerName: string, seshtype: string): Observable<IMessage> {
+    this.stompconfig.brokerURL = this.baseUrl + "/" + seshtype + "/ws"
+    console.log(this.stompconfig.brokerURL)
+    this.rxStomp.configure(this.stompconfig)
+    this.rxStomp.activate()
     const path = this.topicPath + "/" + seshCode + "/controller"
     const headers = {'playerName': playerName}
 
@@ -39,7 +37,7 @@ export class SheshServiceService {
     return this.rxStomp.watch(options)
   }
 
-  sendCommand(command: SeshCommand, seshCode: string) {
+  sendCommand(command: SeshCommand, seshCode: string, seshtype: string) {
 
     const path = this.topicPath + "/" + seshCode
     const options = {destination: path, body: JSON.stringify({command: command})}

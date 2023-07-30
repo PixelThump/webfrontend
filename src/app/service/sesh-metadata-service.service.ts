@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Sesh} from "../model/Sesh";
 import {environment} from "../../environments/environment";
+import {SeshType} from "../model/SeshType";
 
 
 @Injectable({
@@ -15,9 +16,9 @@ export class SeshMetadataServiceService {
   constructor(private http: HttpClient) {
   }
 
-  getSeshTypes(): Observable<string[]> {
+  getSeshTypes(): Observable<SeshType[]> {
 
-    return this.http.get<string[]>(this.backendUrl + "/seshtypes")
+    return this.http.get<SeshType[]>(this.backendUrl + "/seshservice/seshtypes")
   }
 
   hostGame(seshType: string): Observable<Sesh> {
@@ -26,11 +27,11 @@ export class SeshMetadataServiceService {
       headers: {'Content-Type': 'application/json'}
     }
 
-    return this.http.post<Sesh>(this.backendUrl + "/seshs", seshType, options)
+    return this.http.post<Sesh>(this.backendUrl + "/seshservice/seshs", seshType, options)
   }
 
   getSesh(sessionCode: string): Observable<Sesh> {
 
-    return this.http.get<Sesh>(this.backendUrl + "/seshs/" + sessionCode)
+    return this.http.get<Sesh>(this.backendUrl + "/seshservice/seshs/" + sessionCode)
   }
 }

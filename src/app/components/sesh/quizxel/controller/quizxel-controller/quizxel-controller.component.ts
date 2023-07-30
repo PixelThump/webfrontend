@@ -38,7 +38,7 @@ export class QuizxelControllerComponent {
         this.seshCode = <string>params.get("seshCode")
         this.playerName = <string>params.get("playerName")
 
-        this.subscription = this.seshService.joinSeshAsController(this.seshCode, this.playerName).subscribe(iMessage => {
+        this.subscription = this.seshService.joinSeshAsController(this.seshCode, this.playerName, "quizxel").subscribe(iMessage => {
 
           const message = JSON.parse(iMessage.body)
 
@@ -93,7 +93,7 @@ export class QuizxelControllerComponent {
     if (action.body !== undefined) {
 
       const makeVIPCommand: SeshCommand = {playerId: this.playerId, action: action}
-      this.seshService.sendCommand(makeVIPCommand, this.seshCode)
+      this.seshService.sendCommand(makeVIPCommand, this.seshCode, "quizxel")
     }
 
     this.needToAskForVip = false
@@ -109,6 +109,6 @@ export class QuizxelControllerComponent {
   handleAction(action: SeshAction) {
     console.log(action)
     const command: SeshCommand = {playerId: this.playerId, action:action}
-    this.seshService.sendCommand(command, this.seshCode)
+    this.seshService.sendCommand(command, this.seshCode, "quizxel")
   }
 }

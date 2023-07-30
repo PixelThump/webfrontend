@@ -5,5 +5,5 @@ export const environment: IEnvironment = {
   apiUrl: "pixelthump.win/api",
   apiProtocol: "https://",
   socketProtocol: "wss:",
-  supportedSeshTypes: ["QUIZXEL"]
+  supportedSeshTypes: ["quizxel"]
 };
