@@ -3,6 +3,7 @@ import {SeshMetadataServiceService} from "../../service/sesh-metadata-service.se
 import {Router} from "@angular/router";
 import {Sesh} from "../../model/Sesh";
 import {environment} from "../../../environments/environment"
+import {SeshType} from "../../model/SeshType";
 
 @Component({
   selector: 'app-host',
@@ -19,9 +20,10 @@ export class HostComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.metadataService.getSeshTypes().subscribe((backendSeshTypes: string[]) => {
+    this.metadataService.getSeshTypes().subscribe((backendSeshTypes: SeshType[]) => {
 
-      this.seshTypes = backendSeshTypes.filter((backendSeshType) => this.supportedSeshTypes.includes(backendSeshType));
+      const seshTypeStrings: string[] = backendSeshTypes.map(backendSeshType => backendSeshType.name)
+      this.seshTypes = seshTypeStrings.filter((backendSeshType) => this.supportedSeshTypes.includes(backendSeshType));
     })
   }
 

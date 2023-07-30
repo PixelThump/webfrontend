@@ -44,6 +44,7 @@ export class QuizxelHostComponent {
             this.handleErrorMessage(<QuizxelErrorMessage>message)
           }
         })
+      console.log(this.subscription)
       }
     )
   }
