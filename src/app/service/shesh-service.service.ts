@@ -25,6 +25,7 @@ export class SheshServiceService {
 
     const path = this.topicPath + "/" + seshCode + "/host"
     const options = {destination: path}
+    console.log(options)
     return this.rxStomp.watch(options)
   }
 
@@ -32,8 +33,8 @@ export class SheshServiceService {
 
     const path = this.topicPath + "/" + seshCode + "/controller"
     const headers = {'playerName': playerName}
-
     const options = {destination: path, subHeaders: headers, headers: headers}
+    console.log(options)
     return this.rxStomp.watch(options)
   }
 
