@@ -12,7 +12,7 @@ export class SheshServiceService {
   private rxStomp = new RxStomp();
   private baseUrl = environment.socketProtocol + environment.apiUrl
   private topicPath = "/topic/sesh"
-  private stompconfig = {brokerURL: this.baseUrl + "/messaging" +'/ws'}
+  private stompconfig = {brokerURL: this.baseUrl + "/messaging" + '/ws'}
 
 
   constructor() {
@@ -42,6 +42,7 @@ export class SheshServiceService {
 
     const path = this.topicPath + "/" + seshCode
     const options = {destination: path, body: JSON.stringify({command: command})}
+    console.log("sendingCommand " + JSON.stringify(command) + " " + seshCode)
     return this.rxStomp.publish(options)
   }
 }

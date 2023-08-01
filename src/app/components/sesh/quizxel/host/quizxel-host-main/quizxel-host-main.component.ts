@@ -21,8 +21,8 @@ export class QuizxelHostMainComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    const previousState = <QuizxelMainState> changes["state"].previousValue
-    const currentState = <QuizxelMainState> changes["state"].currentValue
+    const previousState = <QuizxelMainState>changes["state"].previousValue
+    const currentState = <QuizxelMainState>changes["state"].currentValue
 
     this.currentQuestion = currentState.currentQuestion;
     this.showQuestion = currentState.showQuestion;
@@ -38,13 +38,15 @@ export class QuizxelHostMainComponent implements OnChanges {
         this.buzzeredPlayer = player
       }
 
-      if (!player.vip){
+      if (!player.vip) {
 
         this.controllerPlayers.push(player);
       }
     })
 
-    if (!previousState.buzzedPlayerId && currentState.buzzedPlayerId){
+    console.log(previousState)
+    console.log(currentState.buzzedPlayerId)
+    if ((previousState.buzzedPlayerId == null) && (currentState.buzzedPlayerId != null)) {
 
       this.playBuzzer()
     }
