@@ -32,7 +32,7 @@ export class QuizxelHostComponent {
     this.route.paramMap.subscribe(params => {
         const seshCode = <string>params.get("seshCode")
 
-        this.subscription = this.seshService.joinSeshAsHost(seshCode, "quizxel").subscribe(iMessage => {
+        this.subscription = this.seshService.joinSeshAsHost(seshCode).subscribe(iMessage => {
 
           const message = JSON.parse(iMessage.body)
           if ('state' in message) {
