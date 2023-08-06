@@ -43,6 +43,8 @@ export class SheshServiceService {
     const path = this.topicPath + "/" + seshCode
     const options = {destination: path, body: JSON.stringify({command: command})}
     console.log("sendingCommand " + JSON.stringify(command) + " " + seshCode)
+    console.log("sendingCommand " + JSON.stringify(command) + " " + seshCode)
+    console.log(options)
     return this.rxStomp.publish(options)
   }
 }

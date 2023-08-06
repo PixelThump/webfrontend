@@ -1,6 +1,5 @@
-import {SeshAction} from "./action/SeshAction";
-
 export interface SeshCommand {
   playerId:string
-  action: SeshAction
+  body: any
+  type: string
 }

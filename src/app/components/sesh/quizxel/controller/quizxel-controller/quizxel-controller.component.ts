@@ -92,7 +92,7 @@ export class QuizxelControllerComponent {
 
     if (action.body !== undefined) {
 
-      const makeVIPCommand: SeshCommand = {playerId: this.playerId, action: action}
+      const makeVIPCommand: SeshCommand = {playerId: this.playerId, body: action.body, type:action.type}
       this.seshService.sendCommand(makeVIPCommand, this.seshCode)
     }
 
@@ -108,7 +108,7 @@ export class QuizxelControllerComponent {
 
   handleAction(action: SeshAction) {
     console.log(action)
-    const command: SeshCommand = {playerId: this.playerId, action:action}
+    const command: SeshCommand = {playerId: this.playerId, body: action.body, type:action.type}
     this.seshService.sendCommand(command, this.seshCode)
   }
 }
