@@ -16,7 +16,17 @@ export class QuizxelControllerMainVipComponent {
   freeBuzzer(answerCorrect?: boolean) {
 
     console.log(answerCorrect)
-    const action: SeshAction = {type: "freeBuzzer", body: answerCorrect};
+    let body;
+
+    if (answerCorrect){
+      body = "correct";
+    }else if (!answerCorrect){
+      body = "wrong"
+    }else {
+      body = null;
+    }
+
+    const action: SeshAction = {type: "freeBuzzer", body: body};
     this.seshAction.emit(action);
   }
 
