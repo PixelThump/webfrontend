@@ -18,9 +18,9 @@ export class QuizxelControllerMainVipComponent {
     console.log(answerCorrect)
     let body;
 
-    if (answerCorrect){
+    if (answerCorrect === true){
       body = "correct";
-    }else if (!answerCorrect){
+    }else if (answerCorrect === false){
       body = "wrong"
     }else {
       body = null;
