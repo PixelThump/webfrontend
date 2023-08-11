@@ -1,0 +1,48 @@
+.player {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  text-align: center;
+  width: fit-content;
+  margin: 5px;
+  border: black solid 5px;
+  border-radius: 10px;
+  background-color: #468B97;
+}
+
+.row{
+
+  display: flex;
+}
+
+.playerHeading{
+
+  align-items: center;
+  justify-content: center;
+  border-bottom: black solid 5px;
+}
+
+.playerName{
+
+  margin: 0;
+  padding: 2px;
+}
+
+#vipMarker{
+
+  max-width: 50px;
+  width: 10%;
+}
+
+.playerIcon{
+
+  width: 100%;
+}
+
+.playerPoints{
+
+  margin: 0;
+  padding: 2px;
+  font-size: 1.25rem;
+  border-top: black solid 5px;
+}

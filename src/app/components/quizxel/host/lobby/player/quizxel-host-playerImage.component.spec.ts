@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {QuizxelHostLobbyPlayerComponent} from "./quizxel-host-lobby-player.component";
+import {QuizxelHostPlayerimageComponent} from "./quizxel-host-lobby-player.component";
 
 
 describe('QuizxelHostLobbyPlayerComponent', () => {
-  let component: QuizxelHostLobbyPlayerComponent;
-  let fixture: ComponentFixture<QuizxelHostLobbyPlayerComponent>;
+  let component: QuizxelHostPlayerimageComponent;
+  let fixture: ComponentFixture<QuizxelHostPlayerimageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [QuizxelHostLobbyPlayerComponent]
+      declarations: [QuizxelHostPlayerimageComponent]
     });
-    fixture = TestBed.createComponent(QuizxelHostLobbyPlayerComponent);
+    fixture = TestBed.createComponent(QuizxelHostPlayerimageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

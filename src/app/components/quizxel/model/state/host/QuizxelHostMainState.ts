@@ -7,8 +7,8 @@ import {QuizxelQuestion} from "../../question/QuizxelQuestion";
 export interface QuizxelHostMainState extends MessagingState {
   players: QuizxelPlayer[]
   currentStage: QuizxelStage
-  currentQuestion:QuizxelQuestion<any>
-  showQuestion:boolean
-  showAnswer:boolean
-  buzzedPlayerId:string
+  currentQuestion: QuizxelQuestion<any>
+  showQuestion: boolean
+  showAnswer: boolean
+  buzzedPlayerId: string
 }

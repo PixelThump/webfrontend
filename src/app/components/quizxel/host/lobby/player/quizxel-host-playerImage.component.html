@@ -1,0 +1,8 @@
+<div *ngIf="player" class="player">
+  <div class="row playerHeading">
+    <h3 class="playerName">{{player.playerName}}</h3>
+    <img *ngIf="player.vip" id="vipMarker" src="../../../../../../assets/vipmarker.png" alt="vipmarker">
+  </div>
+  <img src="../../../../../../assets/{{imageName}}.png" alt="playerIcon" class="playerIcon">
+  <h5 *ngIf="showPoints" class="playerPoints">{{player.points}} Points</h5>
+</div>

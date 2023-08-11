@@ -19,9 +19,6 @@ import {QuizxelComponent} from "./components/quizxel/quizxel.component";
 import {QuizxelControllerComponent} from "./components/quizxel/controller/quizxel-controller.component";
 import {QuizxelHostLobbyComponent} from "./components/quizxel/host/lobby/quizxel-host-lobby.component";
 import {
-  QuizxelHostLobbyPlayerComponent
-} from "./components/quizxel/host/lobby/player/quizxel-host-lobby-player.component";
-import {
   QuizxelControllerLobbyComponent
 } from "./components/quizxel/controller/lobby/quizxel-controller-lobby.component";
 import {QuizxelHostMainComponent} from "./components/quizxel/host/main/quizxel-host-main.component";
@@ -31,6 +28,9 @@ import {
 import {
   QuizxelControllerMainVipComponent
 } from "./components/quizxel/controller/main/vip/quizxel-controller-main-vip.component";
+import {
+  QuizxelHostPlayerImageComponent
+} from "./components/quizxel/host/lobby/player/quizxel-host-playerImage.component";
 
 
 @NgModule({
@@ -49,7 +49,7 @@ import {
     QuizxelHostComponent,
     QuizxelControllerComponent,
     QuizxelHostLobbyComponent,
-    QuizxelHostLobbyPlayerComponent,
+    QuizxelHostPlayerImageComponent,
     QuizxelControllerLobbyComponent,
     QuizxelHostMainComponent,
     QuizxelControllerMainPlayerComponent,

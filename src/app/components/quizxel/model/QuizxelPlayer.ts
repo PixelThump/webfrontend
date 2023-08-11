@@ -4,4 +4,5 @@ export interface QuizxelPlayer {
   vip:boolean
   playerId:string
   points:number
+  imageName: string
 }
