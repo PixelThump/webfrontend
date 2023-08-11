@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
 import {QuizxelState} from "../../model/state/QuizxelState";
+import {QuizxelHostMainState} from "../../model/state/host/QuizxelHostMainState";
 
 @Component({
   selector: 'app-quizxel-host-main',
@@ -10,7 +11,7 @@ import {QuizxelState} from "../../model/state/QuizxelState";
 })
 export class QuizxelHostMainComponent implements OnChanges {
 
-  @Input() state = <QuizxelState>{}
+  @Input() state = <QuizxelHostMainState>{}
   currentQuestion = <QuizxelQuestion<any>>{}
   showQuestion = false
   players: QuizxelPlayer[] = []
@@ -43,19 +44,16 @@ export class QuizxelHostMainComponent implements OnChanges {
         this.controllerPlayers.push(player);
       }
     })
-
-    console.log(previousState)
-    console.log(currentState.buzzedPlayerId)
     if ((previousState.buzzedPlayerId == null) && (currentState.buzzedPlayerId != null)) {
 
       this.playBuzzer()
     }
   }
 
-  private async playBuzzer() {
+  private playBuzzer() {
 
     const buzzerSound = new Audio("/assets/mixkit-correct-answer-fast-notification-953.wav")
     buzzerSound.load()
-    await buzzerSound.play()
+    buzzerSound.play()
   }
 }
