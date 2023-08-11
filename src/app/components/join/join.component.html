@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="join()">
   <h2>Join Game</h2>
-  <label for="sessionCode">Sesh Code</label>
+  <label for="sessionCode">SeshServiceSeshInfo Code</label>
   <input id="sessioncode" formControlName="sessionCode" type="text" [maxLength]="sessionCodeLength"
          (input)="sessionCodeToUppercase($event)" [placeholder]="sessionCodeLength + ' character sesh code'"
          tabindex="50">

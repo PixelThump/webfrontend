@@ -1,12 +1,12 @@
 <div class="row">
   <h2 class="col-12">
-    Available Sesh Types
+    Available SeshServiceSeshInfo Types
   </h2>
 </div>
 <div class="row">
-  <div *ngFor="let seshType of seshTypes" class="card col-4" (click)="hostGame(seshType)" tabindex="50">
+  <div *ngFor="let seshType of backendSupportedSeshTypes" class="card col-4" (click)="hostGame(seshType)" tabindex="50">
     {{seshType}}
   </div>
-  <div *ngIf="seshTypes.length == 0">No seshtypes supported by this version are available on the backend</div>
+  <div *ngIf="backendSupportedSeshTypes.length == 0">No seshtypes supported by this version are available on the backend</div>
 </div>
 

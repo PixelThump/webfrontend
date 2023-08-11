@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {SeshMetadataServiceService} from "../../service/sesh-metadata-service.service";
 import {Router} from "@angular/router";
-import {Sesh} from "../../model/Sesh";
 import {environment} from "../../../environments/environment"
-import {SeshType} from "../../model/SeshType";
+import {SeshService} from "../../service/seshservice/sesh.service";
+import {SeshServiceSeshInfo} from "../../service/seshservice/model/SeshServiceSeshInfo";
+import {SeshServiceSeshType} from "../../service/seshservice/model/SeshServiceSeshType";
 
 @Component({
   selector: 'app-host',
@@ -12,24 +12,24 @@ import {SeshType} from "../../model/SeshType";
 })
 export class HostComponent implements OnInit {
 
-  seshTypes: string[] = []
-  supportedSeshTypes: string[] = environment.supportedSeshTypes
+  backendSupportedSeshTypes: string[] = []
+  frontendSupportedSeshTypes: string[] = environment.supportedSeshTypes
 
-  constructor(private metadataService: SeshMetadataServiceService, private router: Router) {
+  constructor(private seshService: SeshService, private router: Router) {
   }
 
   ngOnInit(): void {
 
-    this.metadataService.getSeshTypes().subscribe((backendSeshTypes: SeshType[]) => {
+    this.seshService.getSeshTypes().subscribe((seshServiceSeshTypes: SeshServiceSeshType[]) => {
 
-      const seshTypeStrings: string[] = backendSeshTypes.map(backendSeshType => backendSeshType.name)
-      this.seshTypes = seshTypeStrings.filter((backendSeshType) => this.supportedSeshTypes.includes(backendSeshType));
+      const seshTypeStrings: string[] = seshServiceSeshTypes.map(backendSeshType => backendSeshType.name)
+      this.backendSupportedSeshTypes = seshTypeStrings.filter((backendSeshType) => this.frontendSupportedSeshTypes.includes(backendSeshType));
     })
   }
 
   hostGame(seshType: string) {
 
-    this.metadataService.hostGame(seshType).subscribe((sesh: Sesh) => {
+    this.seshService.hostGame(seshType).subscribe((sesh: SeshServiceSeshInfo) => {
 
       this.router.navigateByUrl("/" + sesh.seshType.toLowerCase() + "/" + sesh.seshCode + "/player/host").catch(error=> this.handleHostError(error))
     })
