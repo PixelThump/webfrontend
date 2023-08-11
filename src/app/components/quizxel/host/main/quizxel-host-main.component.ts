@@ -52,10 +52,10 @@ export class QuizxelHostMainComponent implements OnChanges {
     }
   }
 
-  private playBuzzer() {
+  private async playBuzzer() {
 
     const buzzerSound = new Audio("/assets/mixkit-correct-answer-fast-notification-953.wav")
     buzzerSound.load()
-    buzzerSound.play()
+    await buzzerSound.play()
   }
 }
