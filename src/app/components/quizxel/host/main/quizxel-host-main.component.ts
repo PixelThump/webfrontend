@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {QuizxelMainState} from "../../model/QuizxelMainState";
 import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
+import {QuizxelState} from "../../model/state/QuizxelState";
 
 @Component({
   selector: 'app-quizxel-host-main',
@@ -10,8 +10,8 @@ import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
 })
 export class QuizxelHostMainComponent implements OnChanges {
 
-  @Input() state = <QuizxelMainState>{}
-  currentQuestion: QuizxelQuestion = <QuizxelQuestion>{}
+  @Input() state = <QuizxelState>{}
+  currentQuestion = <QuizxelQuestion<any>>{}
   showQuestion = false
   players: QuizxelPlayer[] = []
   buzzedPlayerId = ""
@@ -21,8 +21,8 @@ export class QuizxelHostMainComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    const previousState = <QuizxelMainState>changes["state"].previousValue
-    const currentState = <QuizxelMainState>changes["state"].currentValue
+    const previousState = <QuizxelState>changes["state"].previousValue
+    const currentState = <QuizxelState>changes["state"].currentValue
 
     this.currentQuestion = currentState.currentQuestion;
     this.showQuestion = currentState.showQuestion;

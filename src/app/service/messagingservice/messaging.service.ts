@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {IMessage, RxStomp} from "@stomp/rx-stomp";
 import {Observable} from "rxjs";
-import {SeshCommand} from "../../components/quizxel/model/SeshCommand";
 import {environment} from "../../../environments/environment";
+import {MessagingCommand} from "./model/MessagingCommand";
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class MessagingService {
     return this.rxStomp.watch(options)
   }
 
-  sendCommand(command: SeshCommand, seshCode: string) {
+  sendCommand(command: MessagingCommand, seshCode: string) {
 
     const path = this.topicPath + "/" + seshCode
     const options = {destination: path, body: JSON.stringify({command: command})}

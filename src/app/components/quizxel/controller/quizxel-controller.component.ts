@@ -1,15 +1,14 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {QuizxelStateMessage} from "../model/message/QuizxelStateMessage";
-import {SeshStage} from "../model/SeshStage";
-import {SeshCommand} from "../model/SeshCommand";
-import {QuizxelErrorMessage} from "../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
-import {SeshAction} from "../model/action/SeshAction";
-import {LobbyState} from "../model/state/LobbyState";
-import {QuizxelMainState} from "../model/QuizxelMainState";
+import {QuizxelAction} from "./model/QuizxelAction";
 import {QuizxelPlayer} from "../model/QuizxelPlayer";
 import {MessagingService} from "../../../service/messagingservice/messaging.service";
+import {MessagingCommand} from "../../../service/messagingservice/model/MessagingCommand";
+import {MessagingStateStompMessage} from "../../../service/messagingservice/model/message/MessagingStateStompMessage";
+import {MessagingErrorStompMessage} from "../../../service/messagingservice/model/message/MessagingErrorStompMessage";
+import {QuizxelStage} from "../model/QuizxelStage";
+import {QuizxelState} from "../model/state/QuizxelState";
 
 
 @Component({
@@ -20,14 +19,13 @@ import {MessagingService} from "../../../service/messagingservice/messaging.serv
 export class QuizxelControllerComponent {
 
   seshCode = ""
-  currentStage: SeshStage = SeshStage.LOBBY;
+  currentStage: QuizxelStage = QuizxelStage.LOBBY;
   playerName = ""
   playerId = ""
   private subscription: Subscription = new Subscription();
   isVIP = false;
   needToAskForVip = true;
-  lobbyState = <LobbyState>{};
-  mainState = <QuizxelMainState>{};
+  state = <QuizxelState>{};
 
   constructor(private messagingService: MessagingService, private route: ActivatedRoute, private router: Router) {
   }
@@ -41,44 +39,40 @@ export class QuizxelControllerComponent {
         this.subscription = this.messagingService.joinSeshAsController(this.seshCode, this.playerName).subscribe(iMessage => {
 
           const message = JSON.parse(iMessage.body)
+          console.log(message)
 
           if ('state' in message) {
 
-            this.handleStateMessage(<QuizxelStateMessage>message)
+            this.handleStateMessage(<MessagingStateStompMessage>message)
 
           } else if ("error" in message) {
 
-            this.handleErrorMessage(<QuizxelErrorMessage>message)
+            this.handleErrorMessage(<MessagingErrorStompMessage>message)
           }
         })
       }
     )
   }
 
-  private handleStateMessage(message: QuizxelStateMessage) {
-
-    let state = message.state;
-    this.extractState(state)
+  private handleStateMessage(message: MessagingStateStompMessage) {
+    console.log(message.state)
+    this.extractState(<QuizxelState>message.state)
   }
 
-  private extractState(state: LobbyState | QuizxelMainState) {
+  private extractState(state: QuizxelState) {
 
-    if (state.currentStage.toString() === SeshStage[SeshStage.LOBBY]) {
+    if (state.currentStage.toString() === QuizxelStage[QuizxelStage.LOBBY]) {
 
-      this.lobbyState = <LobbyState>state;
-      this.lobbyState.players.forEach(this.checkIfVipExists());
-      this.lobbyState.players.filter((player) => player.playerName === this.playerName)
+
+      state.players.forEach(this.checkIfVipExists());
+     state.players.filter((player) => player.playerName === this.playerName)
         .forEach((player) => {
 
           this.playerId = player.playerId;
           this.isVIP = player.vip;
         });
-
-    } else if (state.currentStage.toString() === SeshStage[SeshStage.MAIN]) {
-
-      this.mainState = <QuizxelMainState>state;
     }
-
+    this.state = state;
     this.currentStage = state.currentStage;
   }
 
@@ -88,27 +82,26 @@ export class QuizxelControllerComponent {
     };
   }
 
-  makeVIP(action: SeshAction) {
+  makeVIP(action: QuizxelAction) {
 
     if (action.body !== undefined) {
 
-      const makeVIPCommand: SeshCommand = {playerId: this.playerId, body: action.body, type:action.type}
+      const makeVIPCommand: MessagingCommand = {playerId: this.playerId, body: action.body, type:action.type}
       this.messagingService.sendCommand(makeVIPCommand, this.seshCode)
     }
 
     this.needToAskForVip = false
   }
 
-  private async handleErrorMessage(message: QuizxelErrorMessage) {
+  private async handleErrorMessage(message: MessagingErrorStompMessage) {
 
     this.subscription.unsubscribe()
     console.log(message)
     this.router.navigateByUrl("/home")
   }
 
-  handleAction(action: SeshAction) {
-    console.log(action)
-    const command: SeshCommand = {playerId: this.playerId, body: action.body, type:action.type}
+  handleAction(action: QuizxelAction) {
+    const command: MessagingCommand = {playerId: this.playerId, body: action.body, type:action.type}
     this.messagingService.sendCommand(command, this.seshCode)
   }
 }

@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {LobbyState} from "../../model/state/LobbyState";
-import {LobbyHostState} from "../../model/state/LobbyHostState";
 import {QuizxelPlayer} from "../../model/QuizxelPlayer";
+import {QuizxelState} from "../../model/state/QuizxelState";
 
 @Component({
   selector: 'app-quizxel-host-lobby',
@@ -9,7 +8,7 @@ import {QuizxelPlayer} from "../../model/QuizxelPlayer";
   styleUrls: ['./quizxel-host-lobby.component.css']
 })
 export class QuizxelHostLobbyComponent {
-  @Input() state: LobbyState = <LobbyHostState>{};
+  @Input() state= <QuizxelState>{};
   players: QuizxelPlayer[] = [];
   seshCode = ""
 }

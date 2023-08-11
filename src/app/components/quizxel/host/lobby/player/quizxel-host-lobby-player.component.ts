@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SeshPlayer} from "../../../model/SeshPlayer";
+import {QuizxelPlayer} from "../../../model/QuizxelPlayer";
 
 @Component({
   selector: 'app-quizxel-host-lobby-player',
@@ -7,6 +7,6 @@ import {SeshPlayer} from "../../../model/SeshPlayer";
   styleUrls: ['./quizxel-host-lobby-player.component.css']
 })
 export class QuizxelHostLobbyPlayerComponent {
-  @Input() player?: SeshPlayer;
+  @Input() player?: QuizxelPlayer;
   @Input() showPoints = false;
 }

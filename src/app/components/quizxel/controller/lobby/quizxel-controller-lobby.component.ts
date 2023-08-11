@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {SeshAction} from "../../model/action/SeshAction";
+import {QuizxelAction} from "../model/QuizxelAction";
 
 @Component({
   selector: 'app-quizxel-controller-lobby',
@@ -11,24 +11,24 @@ export class QuizxelControllerLobbyComponent {
   @Input() isVip = false;
   @Input() needToAskForVip = true;
   @Input() playerId = "";
-  @Output() seshAction: EventEmitter<SeshAction> = new EventEmitter();
-  @Output() makeVIP: EventEmitter<SeshAction> = new EventEmitter();
+  @Output() seshAction: EventEmitter<QuizxelAction> = new EventEmitter();
+  @Output() makeVIP: EventEmitter<QuizxelAction> = new EventEmitter();
 
   emitStartSesh() {
 
-    const action: SeshAction = {type: "startSesh", body: true}
+    const action: QuizxelAction = {type: "startSesh", body: true}
     this.seshAction.emit(action);
   }
 
   emmitMakeVIPEvent() {
 
-    const action: SeshAction = {type: "makeVip", body: this.playerId}
+    const action: QuizxelAction = {type: "makeVip", body: this.playerId}
     this.makeVIP.emit(action);
   }
 
   declineVip() {
 
-    const action: SeshAction = {type: "makeVip", body: false}
+    const action: QuizxelAction = {type: "makeVip", body: false}
     this.makeVIP.emit(action);
   }
 }

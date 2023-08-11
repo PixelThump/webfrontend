@@ -1,10 +1,12 @@
-<app-quizxel-controller-lobby *ngIf="currentStage.toString() === 'LOBBY'" [seshCode]="seshCode" [isVip]="isVIP"
-                      [needToAskForVip]="needToAskForVip" [playerId]="playerId"
-                      (seshAction)="handleAction($event)" (makeVIP)="makeVIP($event)"></app-quizxel-controller-lobby>
+<app-quizxel-controller-lobby *ngIf="state.currentStage.toString() === 'LOBBY'" [seshCode]="state.seshCode" [isVip]="isVIP"
+                              [needToAskForVip]="needToAskForVip" [playerId]="playerId"
+                              (seshAction)="handleAction($event)"
+                              (makeVIP)="makeVIP($event)"></app-quizxel-controller-lobby>
 
-<app-quizxel-controller-main-player *ngIf="currentStage.toString() === 'MAIN' && !isVIP" [playerId]="playerId"
-                             [state]="mainState" (seshAction)="handleAction($event)"></app-quizxel-controller-main-player>
+<app-quizxel-controller-main-player *ngIf="state.currentStage.toString() === 'MAIN' && !isVIP" [playerId]="playerId"
+                                    [questionType]="state.currentQuestion.type" [buzzedPlayerId]="state.buzzedPlayerId"
+                                    (seshAction)="handleAction($event)"></app-quizxel-controller-main-player>
 
-<app-quizxel-controller-main-vip *ngIf="currentStage.toString() === 'MAIN' && isVIP" [playerId]="playerId"
-                                 [state]="mainState"
+<app-quizxel-controller-main-vip *ngIf="state.currentStage.toString() === 'MAIN' && isVIP" [playerId]="playerId"
+                                 [state]="state"
                                  (seshAction)="handleAction($event)"></app-quizxel-controller-main-vip>

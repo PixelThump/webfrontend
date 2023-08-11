@@ -1,13 +1,11 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {QuizxelStateMessage} from "../model/message/QuizxelStateMessage";
-import {SeshStage} from "../model/SeshStage";
-import {LobbyState} from "../model/state/LobbyState";
-import {QuizxelMainState} from "../model/QuizxelMainState";
-import {QuizxelErrorMessage} from "../model/message/QuizxelErrorMessage";
 import {Subscription} from "rxjs";
-import {LobbyHostState} from "../model/state/LobbyHostState";
 import {MessagingService} from "../../../service/messagingservice/messaging.service";
+import {MessagingStateStompMessage} from "../../../service/messagingservice/model/message/MessagingStateStompMessage";
+import {MessagingErrorStompMessage} from "../../../service/messagingservice/model/message/MessagingErrorStompMessage";
+import {QuizxelStage} from "../model/QuizxelStage";
+import {QuizxelState} from "../model/state/QuizxelState";
 
 
 @Component({
@@ -17,10 +15,9 @@ import {MessagingService} from "../../../service/messagingservice/messaging.serv
 })
 export class QuizxelHostComponent {
 
-  currentStage: SeshStage = SeshStage.LOBBY;
+  currentStage: QuizxelStage = QuizxelStage.LOBBY;
   fullScreenMode = false;
-  lobbyState = <LobbyHostState>{};
-  mainState = <QuizxelMainState>{};
+  state = <QuizxelState>{}
   private subscription: Subscription = <Subscription>{};
 
 
@@ -37,11 +34,11 @@ export class QuizxelHostComponent {
           const message = JSON.parse(iMessage.body)
           if ('state' in message) {
 
-            this.handleStateMessage(<QuizxelStateMessage>message)
+            this.handleStateMessage(<MessagingStateStompMessage>message)
 
           } else if ("error" in message) {
 
-            this.handleErrorMessage(<QuizxelErrorMessage>message)
+            this.handleErrorMessage(<MessagingErrorStompMessage>message)
           }
         })
       console.log(this.subscription)
@@ -49,31 +46,17 @@ export class QuizxelHostComponent {
     )
   }
 
-  private handleStateMessage(message: QuizxelStateMessage) {
-
-    let state = message.state;
-    this.extractState(state)
+  private handleStateMessage(message: MessagingStateStompMessage) {
+    console.log(message.state)
+    this.state = <QuizxelState>message.state;
+    this.currentStage = this.state.currentStage;
   }
 
-  private handleErrorMessage(message: QuizxelErrorMessage) {
+  private handleErrorMessage(message: MessagingErrorStompMessage) {
 
     this.subscription.unsubscribe()
     console.error(message)
     this.router.navigateByUrl("/home")
-  }
-
-  private extractState(state: LobbyState| QuizxelMainState){
-
-    this.currentStage = state.currentStage;
-
-    if (state.currentStage.toString() === SeshStage[SeshStage.LOBBY]) {
-
-      this.lobbyState = <LobbyHostState>state;
-
-    } else if (state.currentStage.toString() === SeshStage[SeshStage.MAIN]) {
-
-      this.mainState = <QuizxelMainState>state
-    }
   }
 
   goFullScreen(screen: HTMLDivElement) {

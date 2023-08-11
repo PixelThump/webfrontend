@@ -1,4 +1,4 @@
-export interface QuizxelQuestion{
+export interface QuizxelQuestion<T>{
 
   questionText: string
   questionAnswer: string
