@@ -1,5 +1,4 @@
-<app-quizxel-controller-lobby *ngIf="state.currentStage.toString() === 'LOBBY'" [seshCode]="state.seshCode" [isVip]="isVIP"
-                              [needToAskForVip]="needToAskForVip" [playerId]="playerId"
+<app-quizxel-controller-lobby *ngIf="state.currentStage.toString() === 'LOBBY'" [state]="lobbyState"
                               (seshAction)="handleAction($event)"
                               (makeVIP)="makeVIP($event)"></app-quizxel-controller-lobby>
 

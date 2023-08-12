@@ -1,13 +1,16 @@
 <div class="container">
+  <div class="row playerRow">
+    <app-quizxel-host-lobby-playerplayerImage *ngFor="let player of state.players.slice(0,3)" class="col-3"
+                                   [player]="player"></app-quizxel-host-lobby-playerplayerImage>
+  </div>
   <div class="row">
     <div class="col-4"></div>
     <h3 class="col-4" id="seshCode">{{state.seshCode}}</h3>
     <div class="col-4"></div>
   </div>
-  <div class="row" id="playerRow">
-    <div *ngFor="let player of state.players" class="col-6">
-      <app-quizxel-host-lobby-player [player]="player"></app-quizxel-host-lobby-player>
-    </div>
+  <div class="row playerRow">
+    <app-quizxel-host-lobby-playerplayerImage *ngFor="let player of state.players.slice(3,7)" class="col-3"
+                                   [player]="player"></app-quizxel-host-lobby-playerplayerImage>
   </div>
   <div class="row ">
     <div class="col-10"></div>

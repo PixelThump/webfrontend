@@ -3,7 +3,7 @@ import {QuizxelStage} from "../../QuizxelStage";
 import {MessagingState} from "../../../../../service/messagingservice/model/MessagingState";
 
 
-export interface QuizxelControllerLobbyState extends MessagingState {
+export interface QuizxelControllerVipMainState extends MessagingState {
   currentStage: QuizxelStage
   playerId: string
   buzzedPlayerId: string

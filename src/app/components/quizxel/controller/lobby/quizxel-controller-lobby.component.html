@@ -1,5 +1,4 @@
-<p>quizxel-controller-lobby works!</p>
-<div *ngIf="needToAskForVip" class="popUpBackground">
+<div *ngIf="state.needToAskForVip" class="popUpBackground">
   <div id="vipPopUp">
     <h2>Do you want to be the VIP?</h2>
     <div class="row">
@@ -11,17 +10,17 @@
 
 <div class="container">
   <div class="row">
-    <h2 class="col-12">{{seshCode}}</h2>
+    <h2 class="col-12">{{state.seshCode}}</h2>
   </div>
   <div class="row textRow">
     <p>You joined successfully!<br>
-      <span *ngIf="!isVip">Please wait for the VIP to start the Sesh</span>
+      <span *ngIf="!state.isVip">Please wait for the VIP to start the Sesh</span>
     </p>
   </div>
-  <div class="row" *ngIf="isVip">
+  <div class="row" *ngIf="state.isVip">
     <button (click)="emitStartSesh()">Start Sesh</button>
   </div>
-  <div class="row" >
+  <div class="row">
     <div class="col-12" id="warning">
       <p>Please do <b>not</b>:</p>
       <ul>

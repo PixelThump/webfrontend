@@ -5,10 +5,10 @@
   </div>
 
   <div *ngIf="currentQuestion.type === 'BUZZER' && buzzeredPlayer !== undefined" id="buzzeredPlayer" class="row">
-    <app-quizxel-host-lobby-player [player]="buzzeredPlayer"></app-quizxel-host-lobby-player>
+    <app-quizxel-host-lobby-playerplayerImage [player]="buzzeredPlayer"></app-quizxel-host-lobby-playerplayerImage>
   </div>
 
   <div class="row" id="players">
-    <app-quizxel-host-lobby-player *ngFor="let player of controllerPlayers" [showPoints]="true" [player]="player"></app-quizxel-host-lobby-player>
+    <app-quizxel-host-lobby-playerplayerImage *ngFor="let player of controllerPlayers" [showPoints]="true" [player]="player"></app-quizxel-host-lobby-playerplayerImage>
   </div>
 </div>

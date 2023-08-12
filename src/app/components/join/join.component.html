@@ -7,6 +7,6 @@
 
   <label for="sessionCode">Name</label>
   <input id="playerName" formControlName="playerName" type="text" [maxLength]="playerNameMaxLength"
-         [placeholder]="'Your name'" tabindex="51">
+         [placeholder]="'Your name'"  maxlength="11" tabindex="51">
   <button type="submit" [disabled]="!form.valid || !seshExists" tabindex="52">Join</button>
 </form>

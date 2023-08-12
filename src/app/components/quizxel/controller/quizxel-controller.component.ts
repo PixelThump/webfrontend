@@ -2,13 +2,13 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {QuizxelAction} from "./model/QuizxelAction";
-import {QuizxelPlayer} from "../model/QuizxelPlayer";
 import {MessagingService} from "../../../service/messagingservice/messaging.service";
 import {MessagingCommand} from "../../../service/messagingservice/model/MessagingCommand";
 import {MessagingStateStompMessage} from "../../../service/messagingservice/model/message/MessagingStateStompMessage";
 import {MessagingErrorStompMessage} from "../../../service/messagingservice/model/message/MessagingErrorStompMessage";
 import {QuizxelStage} from "../model/QuizxelStage";
 import {QuizxelState} from "../model/state/QuizxelState";
+import {QuizxelControllerLobbyState} from "../model/state/controller/QuizxelControllerLobbyState";
 
 
 @Component({
@@ -18,6 +18,7 @@ import {QuizxelState} from "../model/state/QuizxelState";
 })
 export class QuizxelControllerComponent {
 
+  lobbyState = <QuizxelControllerLobbyState>{}
   seshCode = ""
   currentStage: QuizxelStage = QuizxelStage.LOBBY;
   playerName = ""
@@ -63,30 +64,24 @@ export class QuizxelControllerComponent {
 
     if (state.currentStage.toString() === QuizxelStage[QuizxelStage.LOBBY]) {
 
-
-      state.players.forEach(this.checkIfVipExists());
-     state.players.filter((player) => player.playerName === this.playerName)
+      this.lobbyState.seshCode = state.seshCode;
+      this.lobbyState.needToAskForVip = this.needToAskForVip
+      state.players.filter((player) => player.playerName === this.playerName)
         .forEach((player) => {
 
-          this.playerId = player.playerId;
-          this.isVIP = player.vip;
+          this.lobbyState.playerId = player.playerId;
+          this.lobbyState.isVip = player.vip;
         });
     }
     this.state = state;
     this.currentStage = state.currentStage;
   }
 
-  private checkIfVipExists() {
-    return (player: QuizxelPlayer) => {
-      if (player.vip) this.needToAskForVip = false;
-    };
-  }
-
   makeVIP(action: QuizxelAction) {
 
     if (action.body !== undefined) {
 
-      const makeVIPCommand: MessagingCommand = {playerId: this.playerId, body: action.body, type:action.type}
+      const makeVIPCommand: MessagingCommand = {playerId: this.playerId, body: action.body, type: action.type}
       this.messagingService.sendCommand(makeVIPCommand, this.seshCode)
     }
 
@@ -101,7 +96,7 @@ export class QuizxelControllerComponent {
   }
 
   handleAction(action: QuizxelAction) {
-    const command: MessagingCommand = {playerId: this.playerId, body: action.body, type:action.type}
+    const command: MessagingCommand = {playerId: this.playerId, body: action.body, type: action.type}
     this.messagingService.sendCommand(command, this.seshCode)
   }
 }

@@ -1,9 +1,10 @@
 .screen{
 
   height: 100%;
-  background: white;
+  background: #1D5B79;
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
 .fullScreenButtons{

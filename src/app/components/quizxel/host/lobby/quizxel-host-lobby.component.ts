@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {QuizxelHostLobbyState} from "../../model/state/host/QuizxelHostLobbyState";
 
 @Component({
@@ -9,6 +8,4 @@ import {QuizxelHostLobbyState} from "../../model/state/host/QuizxelHostLobbyStat
 })
 export class QuizxelHostLobbyComponent {
   @Input() state= <QuizxelHostLobbyState>{};
-  players: QuizxelPlayer[] = [];
-  seshCode = ""
 }

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {QuizxelAction} from "../model/QuizxelAction";
+import {QuizxelControllerLobbyState} from "../../model/state/controller/QuizxelControllerLobbyState";
 
 @Component({
   selector: 'app-quizxel-controller-lobby',
@@ -7,10 +8,7 @@ import {QuizxelAction} from "../model/QuizxelAction";
   styleUrls: ['./quizxel-controller-lobby.component.css']
 })
 export class QuizxelControllerLobbyComponent {
-  @Input() seshCode?: string;
-  @Input() isVip = false;
-  @Input() needToAskForVip = true;
-  @Input() playerId = "";
+  @Input() state = <QuizxelControllerLobbyState>{};
   @Output() seshAction: EventEmitter<QuizxelAction> = new EventEmitter();
   @Output() makeVIP: EventEmitter<QuizxelAction> = new EventEmitter();
 
@@ -22,7 +20,7 @@ export class QuizxelControllerLobbyComponent {
 
   emmitMakeVIPEvent() {
 
-    const action: QuizxelAction = {type: "makeVip", body: this.playerId}
+    const action: QuizxelAction = {type: "makeVip", body: this.state.playerId}
     this.makeVIP.emit(action);
   }
 

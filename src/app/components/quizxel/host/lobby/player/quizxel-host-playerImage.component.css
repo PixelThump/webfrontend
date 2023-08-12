@@ -20,12 +20,14 @@
   align-items: center;
   justify-content: center;
   border-bottom: black solid 5px;
+  flex-wrap: nowrap;
 }
 
 .playerName{
 
   margin: 0;
   padding: 2px;
+  font-size: 20px;
 }
 
 #vipMarker{
@@ -43,6 +45,6 @@
 
   margin: 0;
   padding: 2px;
-  font-size: 1.25rem;
+  font-size: 35px;
   border-top: black solid 5px;
 }

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {QuizxelPlayer} from "../../../model/QuizxelPlayer";
 
 @Component({
-  selector: 'app-quizxel-host-lobby-player',
+  selector: 'app-quizxel-host-lobby-playerplayerImage',
   templateUrl: './quizxel-host-playerImage.component.html',
   styleUrls: ['./quizxel-host-playerImage.component.css']
 })
