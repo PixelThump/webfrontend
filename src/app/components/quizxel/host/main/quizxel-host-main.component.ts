@@ -16,6 +16,8 @@ export class QuizxelHostMainComponent implements OnChanges {
   showQuestion = false
   buzzeredPlayer = <QuizxelPlayer>{}
   controllerPlayers: QuizxelPlayer[] = [];
+  leftControllerPlayers: QuizxelPlayer[] = []
+  rightControllerPlayers: QuizxelPlayer[] = []
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -42,6 +44,9 @@ export class QuizxelHostMainComponent implements OnChanges {
         this.controllerPlayers.push(player);
       }
     })
+    let leftControllerPlayersLastIndex = Math.ceil(this.controllerPlayers.length / 2);
+    this.leftControllerPlayers = this.controllerPlayers.slice(0, leftControllerPlayersLastIndex)
+    this.rightControllerPlayers = this.controllerPlayers.slice(leftControllerPlayersLastIndex)
   }
 
   private playBuzzer() {

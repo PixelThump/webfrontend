@@ -2,20 +2,30 @@
   text-align: center;
 }
 
-#questionContainer{
+#questionContainer {
 
   height: 25%;
 }
 
-#players, #buzzeredPlayer{
+#buzzeredPlayer {
 
   height: fit-content;
 }
 
-#container{
+.playerRow {
+
+  flex-direction: column;
+  height: 100%;
+}
+
+.idlePlayer {
+
+  max-width: 200px;
+}
+
+#container {
 
   height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
