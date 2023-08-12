@@ -7,14 +7,12 @@ import {QuizxelControllerPlayerMainState} from "../../../model/state/controller/
   templateUrl: './quizxel-controller-main-player.component.html',
   styleUrls: ['./quizxel-controller-main-player.component.css']
 })
-export class QuizxelControllerMainPlayerComponent{
+export class QuizxelControllerMainPlayerComponent {
 
-  @Input() state = <QuizxelControllerPlayerMainState> {}
+  @Input() state = <QuizxelControllerPlayerMainState>{}
   @Output() seshAction = new EventEmitter<QuizxelAction>()
 
-
   buzzer() {
-
     const action: QuizxelAction = {type: "buzzer", body: this.state.playerId}
     this.seshAction.emit(action)
   }
