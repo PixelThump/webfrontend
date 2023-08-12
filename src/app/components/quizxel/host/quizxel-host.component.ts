@@ -6,6 +6,7 @@ import {MessagingStateStompMessage} from "../../../service/messagingservice/mode
 import {MessagingErrorStompMessage} from "../../../service/messagingservice/model/message/MessagingErrorStompMessage";
 import {QuizxelStage} from "../model/QuizxelStage";
 import {QuizxelState} from "../model/state/QuizxelState";
+import {IMessage} from "@stomp/rx-stomp";
 
 
 @Component({
@@ -25,47 +26,40 @@ export class QuizxelHostComponent {
   }
 
   ngOnInit(): void {
-
     this.route.paramMap.subscribe(params => {
         const seshCode = <string>params.get("seshCode")
-
-        this.subscription = this.messagingService.joinSeshAsHost(seshCode).subscribe(iMessage => {
-
-          const message = JSON.parse(iMessage.body)
-          if ('state' in message) {
-
-            this.handleStateMessage(<MessagingStateStompMessage>message)
-
-          } else if ("error" in message) {
-
-            this.handleErrorMessage(<MessagingErrorStompMessage>message)
-          }
-        })
-      console.log(this.subscription)
+        this.subscription = this.messagingService.joinSeshAsHost(seshCode).subscribe(this.handleMessage())
       }
     )
   }
 
+  private handleMessage() {
+    return (iMessage: IMessage) => {
+      const message = JSON.parse(iMessage.body)
+      if ('state' in message) {
+        this.handleStateMessage(<MessagingStateStompMessage>message)
+      } else if ("error" in message) {
+        this.handleErrorMessage(<MessagingErrorStompMessage>message)
+      }
+    };
+  }
+
   private handleStateMessage(message: MessagingStateStompMessage) {
-    console.log(message.state)
     this.state = <QuizxelState>message.state;
     this.currentStage = this.state.currentStage;
   }
 
   private handleErrorMessage(message: MessagingErrorStompMessage) {
-
     this.subscription.unsubscribe()
     console.error(message)
     this.router.navigateByUrl("/home")
   }
 
   goFullScreen(screen: HTMLDivElement) {
-
     screen.requestFullscreen().then(() => this.fullScreenMode = true).catch();
   }
 
   exitFullScreen() {
-
     document.exitFullscreen().then(() => this.fullScreenMode = false).catch()
   }
 }
