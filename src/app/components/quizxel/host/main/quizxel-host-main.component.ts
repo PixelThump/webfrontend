@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {QuizxelPlayer} from "../../model/QuizxelPlayer";
 import {QuizxelQuestion} from "../../model/question/QuizxelQuestion";
 import {QuizxelState} from "../../model/state/QuizxelState";
@@ -9,7 +9,7 @@ import {QuizxelHostMainState} from "../../model/state/host/QuizxelHostMainState"
   templateUrl: './quizxel-host-main.component.html',
   styleUrls: ['./quizxel-host-main.component.css']
 })
-export class QuizxelHostMainComponent implements OnChanges {
+export class QuizxelHostMainComponent implements OnInit, OnChanges {
 
   @Input() state = <QuizxelHostMainState>{}
   currentQuestion = <QuizxelQuestion<any>>{}
@@ -20,13 +20,22 @@ export class QuizxelHostMainComponent implements OnChanges {
   rightControllerPlayers: QuizxelPlayer[] = []
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    const previousState = <QuizxelState>changes["state"].previousValue;
+    console.log(changes)
+    const previousState = changes["state"].previousValue;
     const currentState = <QuizxelState>changes["state"].currentValue;
+    this.setUpState(currentState);
+    if (previousState !== undefined) this.checkBuzzer(previousState, currentState);
+  }
+
+  ngOnInit(): void {
+    console.log(this.state)
+    this.setUpState(this.state);
+  }
+
+  private setUpState(currentState: QuizxelHostMainState) {
     this.showQuestion = currentState.showQuestion;
     this.controllerPlayers = [];
     this.extractPlayers(currentState);
-    this.checkBuzzer(previousState, currentState);
   }
 
   private checkBuzzer(previousState: QuizxelState, currentState: QuizxelState) {
@@ -35,7 +44,7 @@ export class QuizxelHostMainComponent implements OnChanges {
     }
   }
 
-  private extractPlayers(currentState: QuizxelState) {
+  private extractPlayers(currentState: QuizxelHostMainState) {
     this.state.players.forEach(player => {
       if (player.playerId === currentState.buzzedPlayerId) {
         this.buzzeredPlayer = player
@@ -54,4 +63,6 @@ export class QuizxelHostMainComponent implements OnChanges {
     buzzerSound.load()
     buzzerSound.play()
   }
+
+
 }
