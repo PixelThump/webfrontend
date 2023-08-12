@@ -43,11 +43,8 @@ export class QuizxelControllerComponent {
         this.subscription = this.messagingService.joinSeshAsController(this.seshCode, this.playerName).subscribe(iMessage => {
           const message = JSON.parse(iMessage.body)
           if ('state' in message) {
-
             this.handleStateMessage(<MessagingStateStompMessage>message)
-
           } else if ("error" in message) {
-
             this.handleErrorMessage(<MessagingErrorStompMessage>message)
           }
         })
@@ -65,26 +62,28 @@ export class QuizxelControllerComponent {
     } else if (state.currentStage.toString() === QuizxelStage[QuizxelStage.MAIN]) {
       this.extractMainState(state)
     }
-
   }
 
   private isVip(players: QuizxelPlayer[]): boolean {
+
     return <boolean>players.find(player => player.playerName == this.playerName)?.vip
   }
 
   private extractLobbyState(state: QuizxelState) {
+
     this.lobbyState.seshCode = state.seshCode;
     if (this.needToAskForVip) {
-
       this.needToAskForVip = !state.hasVip;
     }
     this.lobbyState.needToAskForVip = this.needToAskForVip
-    state.players.filter((player) => player.playerName === this.playerName)
-      .forEach((player) => {
+    this.setPlayerIdAndIsVip(state);
+  }
 
-        this.lobbyState.playerId = player.playerId;
-        this.lobbyState.isVip = player.vip;
-      });
+  private setPlayerIdAndIsVip(state: QuizxelState) {
+
+    let player = <QuizxelPlayer>state.players.find((player) => player.playerName === this.playerName);
+    this.lobbyState.playerId = player.playerId;
+    this.lobbyState.isVip = player.vip;
   }
 
   private extractMainState(state: QuizxelState) {
@@ -99,22 +98,21 @@ export class QuizxelControllerComponent {
   makeVIP(action: QuizxelAction) {
 
     if (action.body !== undefined) {
-
       const makeVIPCommand: MessagingCommand = {playerId: this.playerId, body: action.body, type: action.type}
       this.messagingService.sendCommand(makeVIPCommand, this.seshCode)
     }
-
     this.needToAskForVip = false
   }
 
-  private async handleErrorMessage(message: MessagingErrorStompMessage) {
+  private handleErrorMessage(message: MessagingErrorStompMessage) {
 
     this.subscription.unsubscribe()
-    console.log(message)
+    console.error(message);
     this.router.navigateByUrl("/home")
   }
 
   handleAction(action: QuizxelAction) {
+
     const command: MessagingCommand = {playerId: this.playerId, body: action.body, type: action.type}
     this.messagingService.sendCommand(command, this.seshCode)
   }
