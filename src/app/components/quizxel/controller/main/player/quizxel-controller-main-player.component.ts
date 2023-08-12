@@ -1,27 +1,21 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {QuizxelAction} from "../../model/QuizxelAction";
+import {QuizxelControllerPlayerMainState} from "../../../model/state/controller/QuizxelControllerPlayerMainState";
 
 @Component({
   selector: 'app-quizxel-controller-main-player',
   templateUrl: './quizxel-controller-main-player.component.html',
   styleUrls: ['./quizxel-controller-main-player.component.css']
 })
-export class QuizxelControllerMainPlayerComponent implements OnChanges {
+export class QuizxelControllerMainPlayerComponent{
 
-  @Input() playerId = "";
-  @Input() questionType = "";
-  @Input() buzzedPlayerId = "";
+  @Input() state = <QuizxelControllerPlayerMainState> {}
   @Output() seshAction = new EventEmitter<QuizxelAction>()
 
 
   buzzer() {
 
-    const action: QuizxelAction = {type: "buzzer", body: this.playerId}
+    const action: QuizxelAction = {type: "buzzer", body: this.state.playerId}
     this.seshAction.emit(action)
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-  }
-
 }

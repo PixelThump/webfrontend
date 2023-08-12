@@ -9,6 +9,9 @@ import {MessagingErrorStompMessage} from "../../../service/messagingservice/mode
 import {QuizxelStage} from "../model/QuizxelStage";
 import {QuizxelState} from "../model/state/QuizxelState";
 import {QuizxelControllerLobbyState} from "../model/state/controller/QuizxelControllerLobbyState";
+import {QuizxelControllerVipMainState} from "../model/state/controller/QuizxelControllerVipMainState";
+import {QuizxelControllerPlayerMainState} from "../model/state/controller/QuizxelControllerPlayerMainState";
+import {QuizxelPlayer} from "../model/QuizxelPlayer";
 
 
 @Component({
@@ -19,14 +22,15 @@ import {QuizxelControllerLobbyState} from "../model/state/controller/QuizxelCont
 export class QuizxelControllerComponent {
 
   lobbyState = <QuizxelControllerLobbyState>{}
-  seshCode = ""
-  currentStage: QuizxelStage = QuizxelStage.LOBBY;
-  playerName = ""
-  playerId = ""
+  vipMainState = <QuizxelControllerVipMainState>{}
+  playerMainState = <QuizxelControllerPlayerMainState>{}
   private subscription: Subscription = new Subscription();
   isVIP = false;
   needToAskForVip = true;
-  state = <QuizxelState>{};
+  currentStage: QuizxelStage = QuizxelStage.LOBBY;
+  seshCode = ""
+  playerName = ""
+  playerId = ""
 
   constructor(private messagingService: MessagingService, private route: ActivatedRoute, private router: Router) {
   }
@@ -36,12 +40,8 @@ export class QuizxelControllerComponent {
     this.route.paramMap.subscribe(params => {
         this.seshCode = <string>params.get("seshCode")
         this.playerName = <string>params.get("playerName")
-
         this.subscription = this.messagingService.joinSeshAsController(this.seshCode, this.playerName).subscribe(iMessage => {
-
           const message = JSON.parse(iMessage.body)
-          console.log(message)
-
           if ('state' in message) {
 
             this.handleStateMessage(<MessagingStateStompMessage>message)
@@ -56,25 +56,44 @@ export class QuizxelControllerComponent {
   }
 
   private handleStateMessage(message: MessagingStateStompMessage) {
-    console.log(message.state)
-    this.extractState(<QuizxelState>message.state)
+
+    let state = <QuizxelState>message.state;
+    this.currentStage = state.currentStage;
+    this.isVIP = this.isVip(state.players);
+    if (state.currentStage.toString() === QuizxelStage[QuizxelStage.LOBBY]) {
+      this.extractLobbyState(state);
+    } else if (state.currentStage.toString() === QuizxelStage[QuizxelStage.MAIN]) {
+      this.extractMainState(state)
+    }
+
   }
 
-  private extractState(state: QuizxelState) {
+  private isVip(players: QuizxelPlayer[]): boolean {
+    return <boolean>players.find(player => player.playerName == this.playerName)?.vip
+  }
 
-    if (state.currentStage.toString() === QuizxelStage[QuizxelStage.LOBBY]) {
+  private extractLobbyState(state: QuizxelState) {
+    this.lobbyState.seshCode = state.seshCode;
+    if (this.needToAskForVip) {
 
-      this.lobbyState.seshCode = state.seshCode;
-      this.lobbyState.needToAskForVip = this.needToAskForVip
-      state.players.filter((player) => player.playerName === this.playerName)
-        .forEach((player) => {
-
-          this.lobbyState.playerId = player.playerId;
-          this.lobbyState.isVip = player.vip;
-        });
+      this.needToAskForVip = !state.hasVip;
     }
-    this.state = state;
-    this.currentStage = state.currentStage;
+    this.lobbyState.needToAskForVip = this.needToAskForVip
+    state.players.filter((player) => player.playerName === this.playerName)
+      .forEach((player) => {
+
+        this.lobbyState.playerId = player.playerId;
+        this.lobbyState.isVip = player.vip;
+      });
+  }
+
+  private extractMainState(state: QuizxelState) {
+
+    this.vipMainState = <QuizxelControllerVipMainState><unknown>state;
+    this.playerMainState.playerId = this.playerId;
+    this.playerMainState.currentStage = state.currentStage;
+    this.playerMainState.buzzedPlayerId = state.buzzedPlayerId;
+    this.playerMainState.seshCode = state.seshCode;
   }
 
   makeVIP(action: QuizxelAction) {

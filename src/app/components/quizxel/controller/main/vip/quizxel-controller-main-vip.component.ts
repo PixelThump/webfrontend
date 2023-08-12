@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {QuizxelAction} from "../../model/QuizxelAction";
-import {QuizxelState} from "../../../model/state/QuizxelState";
+import {QuizxelControllerVipMainState} from "../../../model/state/controller/QuizxelControllerVipMainState";
 
 @Component({
   selector: 'app-quizxel-controller-main-vip',
@@ -10,7 +10,7 @@ import {QuizxelState} from "../../../model/state/QuizxelState";
 export class QuizxelControllerMainVipComponent {
 
   @Input() playerId = "";
-  @Input() state = <QuizxelState>{}
+  @Input() state = <QuizxelControllerVipMainState>{}
   @Output() seshAction: EventEmitter<QuizxelAction> = new EventEmitter();
 
   freeBuzzer(answerCorrect?: boolean) {
