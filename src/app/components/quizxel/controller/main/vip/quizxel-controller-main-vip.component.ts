@@ -14,43 +14,35 @@ export class QuizxelControllerMainVipComponent {
   @Output() seshAction: EventEmitter<QuizxelAction> = new EventEmitter();
 
   freeBuzzer(answerCorrect?: boolean) {
-
-    console.log(answerCorrect)
     let body;
-
-    if (answerCorrect === true){
+    if (answerCorrect === true) {
       body = "correct";
-    }else if (answerCorrect === false){
+    } else if (answerCorrect === false) {
       body = "wrong"
-    }else {
+    } else {
       body = null;
     }
-
     const action: QuizxelAction = {type: "freeBuzzer", body: body};
     this.seshAction.emit(action);
   }
 
   showQuestion(show: boolean) {
-
-    const action: QuizxelAction = {type:"showQuestion", body: show};
+    const action: QuizxelAction = {type: "showQuestion", body: show};
     this.seshAction.emit(action);
   }
 
   nextQuestion() {
-
     const action: QuizxelAction = {type: "nextQuestion", body: "next"}
     this.seshAction.emit(action);
   }
 
-  prevQuestion(){
-
+  prevQuestion() {
     const action: QuizxelAction = {type: "nextQuestion", body: "prev"}
     this.seshAction.emit(action);
   }
 
   showAnswer(show: boolean) {
-
-    const action: QuizxelAction = {type:"showAnswer", body: show};
+    const action: QuizxelAction = {type: "showAnswer", body: show};
     this.seshAction.emit(action);
   }
 }
