@@ -14,44 +14,37 @@ export class QuizxelHostMainComponent implements OnChanges {
   @Input() state = <QuizxelHostMainState>{}
   currentQuestion = <QuizxelQuestion<any>>{}
   showQuestion = false
-  players: QuizxelPlayer[] = []
-  buzzedPlayerId = ""
-  buzzeredPlayer?: QuizxelPlayer
+  buzzeredPlayer = <QuizxelPlayer>{}
   controllerPlayers: QuizxelPlayer[] = [];
-  showAnswer = false;
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    const previousState = <QuizxelState>changes["state"].previousValue
-    const currentState = <QuizxelState>changes["state"].currentValue
-
-    this.currentQuestion = currentState.currentQuestion;
+    const previousState = <QuizxelState>changes["state"].previousValue;
+    const currentState = <QuizxelState>changes["state"].currentValue;
     this.showQuestion = currentState.showQuestion;
-    this.showAnswer = currentState.showAnswer;
-    this.players = currentState.players;
-    this.buzzedPlayerId = currentState.buzzedPlayerId
-    this.buzzeredPlayer = undefined;
-    this.controllerPlayers = []
-    this.players.forEach(player => {
+    this.controllerPlayers = [];
+    this.extractPlayers(currentState);
+    this.checkBuzzer(previousState, currentState);
+  }
 
-      if (player.playerId === currentState.buzzedPlayerId) {
-
-        this.buzzeredPlayer = player
-      }
-
-      if (!player.vip) {
-
-        this.controllerPlayers.push(player);
-      }
-    })
+  private checkBuzzer(previousState: QuizxelState, currentState: QuizxelState) {
     if ((previousState.buzzedPlayerId == null) && (currentState.buzzedPlayerId != null)) {
-
-      this.playBuzzer()
+      this.playBuzzer();
     }
   }
 
-  private playBuzzer() {
+  private extractPlayers(currentState: QuizxelState) {
+    this.state.players.forEach(player => {
+      if (player.playerId === currentState.buzzedPlayerId) {
+        this.buzzeredPlayer = player
+      }
+      if (!player.vip) {
+        this.controllerPlayers.push(player);
+      }
+    })
+  }
 
+  private playBuzzer() {
     const buzzerSound = new Audio("/assets/mixkit-correct-answer-fast-notification-953.wav")
     buzzerSound.load()
     buzzerSound.play()

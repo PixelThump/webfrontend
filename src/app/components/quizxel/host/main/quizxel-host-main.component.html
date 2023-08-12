@@ -1,10 +1,10 @@
 <div id="container">
   <div id="questionContainer">
-    <h2 id="questionText" *ngIf="showQuestion">{{currentQuestion.questionText}}</h2>
-    <h2 id="questionAnswer" *ngIf="showAnswer">{{currentQuestion.questionAnswer}}</h2>
+    <h2 id="questionText" *ngIf="state.showQuestion">{{state.currentQuestion.questionText}}</h2>
+    <h2 id="questionAnswer" *ngIf="state.showAnswer">{{state.currentQuestion.questionAnswer}}</h2>
   </div>
 
-  <div *ngIf="currentQuestion.type === 'BUZZER' && buzzeredPlayer !== undefined" id="buzzeredPlayer" class="row">
+  <div *ngIf="state.currentQuestion.type === 'BUZZER' && state.buzzedPlayerId !== null" id="buzzeredPlayer" class="row">
     <app-quizxel-host-lobby-playerplayerImage [player]="buzzeredPlayer"></app-quizxel-host-lobby-playerplayerImage>
   </div>
 
