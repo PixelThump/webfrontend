@@ -1,20 +1,17 @@
-<div id="container">
-  <div class="row playerRow col-3">
+<div class="main">
+  <div class="playerRow">
     <app-quizxel-host-lobby-playerplayerImage class="idlePlayer" *ngFor="let player of leftControllerPlayers"
                                               [showPoints]="true"
                                               [player]="player"></app-quizxel-host-lobby-playerplayerImage>
   </div>
-  <div class="col-6">
-    <div id="questionContainer">
-      <h2 id="questionText" *ngIf="state.showQuestion">{{state.currentQuestion.questionText}}</h2>
-      <h2 id="questionAnswer" *ngIf="state.showAnswer">{{state.currentQuestion.questionAnswer}}</h2>
-    </div>
-    <div *ngIf="state.currentQuestion.type === 'BUZZER' && state.buzzedPlayerId !== null" id="buzzeredPlayer"
-         class="row">
-      <app-quizxel-host-lobby-playerplayerImage [player]="buzzeredPlayer"></app-quizxel-host-lobby-playerplayerImage>
-    </div>
+  <div class="middleRow">
+    <h2 id="questionText" *ngIf="state.showQuestion">{{state.currentQuestion.questionText}}</h2>
+    <h2 id="questionAnswer" *ngIf="state.showAnswer">{{state.currentQuestion.questionAnswer}}</h2>
+    <app-quizxel-host-lobby-playerplayerImage
+      *ngIf="state.currentQuestion.type === 'BUZZER' && state.buzzedPlayerId !== null"
+      [player]="buzzeredPlayer" id="buzzeredPlayer" class="col-6"></app-quizxel-host-lobby-playerplayerImage>
   </div>
-  <div class="row playerRow col-3">
+  <div class="playerRow">
     <app-quizxel-host-lobby-playerplayerImage class="idlePlayer" *ngFor="let player of rightControllerPlayers"
                                               [showPoints]="true"
                                               [player]="player"></app-quizxel-host-lobby-playerplayerImage>

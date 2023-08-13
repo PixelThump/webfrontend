@@ -1,27 +1,27 @@
 
-*{
+* {
 
   box-sizing: border-box;
 
   --primary-color: #333333;
-  --secondary-color:#c8112f;
+  --secondary-color: #c8112f;
   --background-color: #f2f2f2;
   font-family: sans-serif;
 }
 
-img{
-
+img {
   max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
 }
 
-body{
+body {
 
   margin: 0;
   min-height: 100vh;
 }
 
-.card{
+.card {
 
   background-color: white;
   border-radius: 5px;
@@ -33,30 +33,30 @@ body{
   padding: 10px;
 }
 
-.card:hover{
+.card:hover {
 
   background-color: #ececec;
 }
 
-[class*="col-"]{
+[class*="col-"] {
 
   margin: 0 10px;
 }
 
-a{
+a {
 
   color: inherit;
   text-decoration: none;
 }
 
-.container{
+.container {
 
   max-width: 1920px;
   margin: 0 auto;
   width: 100%;
 }
 
-.row{
+.row {
 
   padding: 5px 0 5px;
   display: flex;
@@ -65,68 +65,68 @@ a{
   flex-wrap: wrap;
 }
 
-.col-12{
+.col-12 {
 
   width: calc(100% - 20px);
 
 }
 
-.col-11{
+.col-11 {
 
   width: calc(100% / 12 * 11 - 20px);
 }
 
-.col-10{
+.col-10 {
 
   width: calc(100% / 12 * 10 - 20px);
 }
 
-.col-9{
+.col-9 {
 
   width: calc(100% / 12 * 9 - 20px);
 }
 
-.col-8{
+.col-8 {
 
   width: calc(100% / 12 * 8 - 20px);
 }
 
-.col-7{
+.col-7 {
 
   width: calc(100% / 12 * 7 - 20px);
 }
 
-.col-6{
+.col-6 {
 
   width: calc(50% - 20px);
 }
 
-.col-5{
+.col-5 {
 
   width: calc(100% / 12 * 5 - 20px);
 }
 
-.col-4{
+.col-4 {
 
   width: calc(100% / 12 * 4 - 20px);
 }
 
-.col-3{
+.col-3 {
 
   width: calc(100% / 12 * 3 - 20px);
 }
 
-.col-2{
+.col-2 {
 
   width: calc(100% / 12 * 2 - 20px);
 }
 
-.col-1{
+.col-1 {
 
   width: calc(100% / 12 - 20px);
 }
 
-.pageComponent{
+.pageComponent {
   display: inline-block;
   height: 100%;
 }

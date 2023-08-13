@@ -1,4 +1,4 @@
-<div class="screen" #screen>
+<div class="screen" id="screen" #screen>
   <div class="fullScreenButtons">
     <button *ngIf="fullScreenMode === false" (click)="goFullScreen(screen)">Enter FullScreen</button>
     <button *ngIf="fullScreenMode === true" (click)="exitFullScreen()" id="leaveFullScreenButton">X</button>
