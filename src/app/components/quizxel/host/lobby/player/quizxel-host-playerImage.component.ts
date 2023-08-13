@@ -16,7 +16,7 @@ export class QuizxelHostPlayerImageComponent implements OnInit {
 
     if (this.player.playerIconName == null) {
 
-      this.player.playerIconName = PlayerIconName.default;
+      this.player.playerIconName = PlayerIconName.basic;
     }
     console.log(this.player.playerIconName)
     this.imageName = "quizxel/" + this.player.playerIconName + "PlayerIcon"

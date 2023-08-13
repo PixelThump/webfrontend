@@ -1,6 +1,6 @@
 export enum PlayerIconName{
 
-  default= "default",
+  basic= "basic",
   cleo = "clea",
   hydra= "hydra",
   gasmask = "gasmask",
