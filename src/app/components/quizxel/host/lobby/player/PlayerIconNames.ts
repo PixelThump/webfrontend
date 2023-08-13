@@ -1,9 +1,9 @@
 export enum PlayerIconName{
 
-  basic= "basic",
-  cleo = "clea",
-  hydra= "hydra",
-  gasmask = "gasmask",
-  horse="horse",
-  boobman= "boobman"
+  BASIC= "basic",
+  CLEO = "clea",
+  HYDRA= "hydra",
+  GASMASK = "gasmask",
+  HORSE="horse",
+  BOOBMAN= "boobman"
 }
