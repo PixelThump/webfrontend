@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {MessagingService} from "../../../service/messagingservice/messaging.service";
@@ -14,7 +14,7 @@ import {IMessage} from "@stomp/rx-stomp";
   templateUrl: './quizxel-host.component.html',
   styleUrls: ['./quizxel-host.component.css']
 })
-export class QuizxelHostComponent {
+export class QuizxelHostComponent implements OnDestroy, OnInit{
 
   currentStage: QuizxelStage = QuizxelStage.LOBBY;
   fullScreenMode = false;
@@ -31,6 +31,11 @@ export class QuizxelHostComponent {
         this.subscription = this.messagingService.joinSeshAsHost(seshCode).subscribe(this.handleMessage())
       }
     )
+  }
+
+  ngOnDestroy(): void {
+
+    this.subscription.unsubscribe();
   }
 
   private handleMessage() {
@@ -62,4 +67,5 @@ export class QuizxelHostComponent {
   exitFullScreen() {
     document.exitFullscreen().then(() => this.fullScreenMode = false).catch()
   }
+
 }

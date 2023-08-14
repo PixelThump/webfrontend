@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {QuizxelAction} from "./model/QuizxelAction";
@@ -19,7 +19,7 @@ import {QuizxelPlayer} from "../model/QuizxelPlayer";
   templateUrl: './quizxel-controller.component.html',
   styleUrls: ['./quizxel-controller.component.css']
 })
-export class QuizxelControllerComponent {
+export class QuizxelControllerComponent implements OnDestroy, OnInit{
 
   lobbyState = <QuizxelControllerLobbyState>{}
   vipMainState = <QuizxelControllerVipMainState>{}
@@ -50,6 +50,11 @@ export class QuizxelControllerComponent {
         })
       }
     )
+  }
+
+  ngOnDestroy(): void {
+
+    this.subscription.unsubscribe();
   }
 
   private handleStateMessage(message: MessagingStateStompMessage) {
