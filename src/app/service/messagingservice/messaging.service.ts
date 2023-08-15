@@ -32,7 +32,7 @@ export class MessagingService {
   joinSeshAsController(seshCode: string, playerName: string): Observable<IMessage> {
 
     const path = this.topicPath + "/" + seshCode + "/controller"
-    const headers = {'playerName': playerName}
+    const headers = {'playerName': playerName, "reconnectToken" : <string> sessionStorage.getItem("reconnectToken")}
     const options = {destination: path, subHeaders: headers, headers: headers}
     console.log(options)
     return this.rxStomp.watch(options)
