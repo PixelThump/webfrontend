@@ -89,6 +89,7 @@ export class QuizxelControllerComponent implements OnDestroy, OnInit{
     let player = <QuizxelPlayer>state.players.find((player) => player.playerName === this.playerName);
     this.lobbyState.playerId = player.playerId;
     this.lobbyState.isVip = player.vip;
+    sessionStorage.setItem("reconnectToken", player.playerId)
   }
 
   private extractMainState(state: QuizxelState) {
@@ -98,6 +99,7 @@ export class QuizxelControllerComponent implements OnDestroy, OnInit{
     this.playerMainState.currentStage = state.currentStage;
     this.playerMainState.buzzedPlayerId = state.buzzedPlayerId;
     this.playerMainState.seshCode = state.seshCode;
+    sessionStorage.setItem("reconnectToken", this.playerId)
   }
 
   makeVIP(action: QuizxelAction) {
