@@ -1,0 +1,21 @@
+.playerRow{
+
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.container{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #1D5B79;
+}
+
+#seshCode{
+
+  text-align: center;
+}

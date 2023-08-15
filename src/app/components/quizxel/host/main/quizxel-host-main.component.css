@@ -1,0 +1,27 @@
+.main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.playerRow, .middleRow {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+  padding: 5px;
+}
+
+.playerRow {
+
+  width: 12.5%;
+  height: 100%;
+}
+
+.middleRow {
+
+  width: 75%;
+  height: 100%;
+}

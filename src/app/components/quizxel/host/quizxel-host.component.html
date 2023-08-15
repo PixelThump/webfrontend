@@ -1,0 +1,9 @@
+<div class="screen" id="screen" #screen>
+  <div class="fullScreenButtons">
+    <button *ngIf="fullScreenMode === false" (click)="goFullScreen(screen)">Enter FullScreen</button>
+    <button *ngIf="fullScreenMode === true" (click)="exitFullScreen()" id="leaveFullScreenButton">X</button>
+  </div>
+  <app-quizxel-host-lobby *ngIf="currentStage.toString() === 'LOBBY'" [state]="state"></app-quizxel-host-lobby>
+  <app-quizxel-host-main *ngIf="currentStage.toString() === 'MAIN'"
+                         [state]="state"></app-quizxel-host-main>
+</div>

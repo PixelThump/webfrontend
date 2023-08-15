@@ -1,0 +1,34 @@
+.player {
+  border: black solid 5px;
+  border-radius: 10px;
+  background-color: #468B97;
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: auto;
+  margin: 5px;
+}
+
+.playerHeading{
+  border-bottom: black solid 3px;
+}
+.pointsRow{
+
+  border-top: black solid 3px;
+}
+
+  #vipMarker {
+
+  height: 1.5rem;
+  width: auto;
+}
+
+.playerName, .playerPoints {
+
+  font-size: 100%;
+  margin: 0;
+}
+
+.imageRow{
+  height: fit-content;
+  padding: 0;
+}

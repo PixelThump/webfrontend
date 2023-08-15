@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SeshMetadataServiceService} from "../../service/sesh-metadata-service.service";
-import {Sesh} from "../../model/Sesh";
 import {Router} from "@angular/router";
+import {SeshService} from "../../service/seshservice/sesh.service";
+import {SeshServiceSeshInfo} from "../../service/seshservice/model/SeshServiceSeshInfo";
 
 @Component({
   selector: 'app-join',
@@ -21,19 +21,18 @@ export class JoinComponent {
     sessionCode: new FormControl("", this.sessionCodeValidators),
     playerName: new FormControl("", this.playerNameValidators)
   })
-  private sesh?: Sesh;
+  private seshInfo?: SeshServiceSeshInfo;
   seshExists = true;
 
 
-  constructor(private metadataService: SeshMetadataServiceService, private router: Router) {
+  constructor(private seshService: SeshService, private router: Router) {
   }
 
   join() {
 
-    if (this.sesh == undefined) return
-    const sesh = this.sesh
+    if (this.seshInfo == undefined) return
     const playerName = this.form.value.playerName?.valueOf()
-    this.router.navigateByUrl("/"+ sesh.seshType.toLowerCase() + "/" + sesh.seshCode + "/player/" + playerName).catch(error=> this.handleJoinError(error))
+    this.router.navigateByUrl("/"+ this.seshInfo.seshType.toLowerCase() + "/" + this.seshInfo.seshCode + "/player/" + playerName).catch(error=> this.handleJoinError(error))
   }
 
   sessionCodeToUppercase(changeEvent: Event) {
@@ -49,10 +48,10 @@ export class JoinComponent {
   private checkSessionExists(sessionCode: string) {
 
     const observer = {
-      next: (sesh: Sesh) => this.sesh = sesh,
+      next: (sesh: SeshServiceSeshInfo) => this.seshInfo = sesh,
       error: ((error:Error) => this.handleCheckError(error))
     }
-    this.metadataService.getSesh(sessionCode).subscribe(observer)
+    this.seshService.getSesh(sessionCode).subscribe(observer)
   }
 
   private handleCheckError(error: Error) {
