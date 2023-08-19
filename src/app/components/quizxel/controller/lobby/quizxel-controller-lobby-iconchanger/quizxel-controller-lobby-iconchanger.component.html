@@ -1,0 +1,4 @@
+<div class="row">
+  <img *ngFor="let imageName of imageNames" src="../../../../../../assets/quizxel/{{imageName}}PlayerIcon.png"
+       alt="playerIcon" class="playerIcon col-4" (click)="emitChangeIconEvent(imageName)">
+</div>

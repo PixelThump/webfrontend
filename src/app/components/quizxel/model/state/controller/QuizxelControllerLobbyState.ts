@@ -1,8 +1,8 @@
-import {MessagingState} from "../../../../../service/messagingservice/model/MessagingState";
+import {QuizxelControllerState} from "./QuizxelControllerState";
+import {PlayerIconName} from "../../../host/lobby/player/PlayerIconNames";
 
 
-export interface QuizxelControllerLobbyState extends MessagingState {
-  isVip: boolean
-  needToAskForVip: boolean
-  playerId: string
+export interface QuizxelControllerLobbyState extends QuizxelControllerState {
+  currentIcon: PlayerIconName;
+  hasVip: boolean
 }

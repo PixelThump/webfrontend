@@ -11,7 +11,7 @@ export class MessagingService {
 
   private rxStomp = new RxStomp();
   private baseUrl = environment.socketProtocol + environment.apiUrl
-  private topicPath = "/topic/sesh"
+  private topicPath = "/topic/sesh/"
   private stompconfig = {brokerURL: this.baseUrl + "/messaging" + '/ws'}
 
 
@@ -23,7 +23,7 @@ export class MessagingService {
 
   joinSeshAsHost(seshCode: string): Observable<IMessage> {
 
-    const path = this.topicPath + "/" + seshCode + "/host"
+    const path = this.topicPath + seshCode + "/controller/host"
     const options = {destination: path}
     console.log(options)
     return this.rxStomp.watch(options)
@@ -31,8 +31,8 @@ export class MessagingService {
 
   joinSeshAsController(seshCode: string, playerName: string): Observable<IMessage> {
 
-    const path = this.topicPath + "/" + seshCode + "/controller"
-    const headers = {'playerName': playerName, "reconnectToken" : <string> sessionStorage.getItem("reconnectToken")}
+    const path = this.topicPath + seshCode + "/controller/" + playerName;
+    const headers = {'playerName': playerName, "reconnectToken" : "null"}
     const options = {destination: path, subHeaders: headers, headers: headers}
     console.log(options)
     return this.rxStomp.watch(options)
@@ -40,10 +40,9 @@ export class MessagingService {
 
   sendCommand(command: MessagingCommand, seshCode: string) {
 
-    const path = this.topicPath + "/" + seshCode
+    const path = this.topicPath + seshCode;
     const options = {destination: path, body: JSON.stringify({command: command})}
-    console.log("sendingCommand " + JSON.stringify(command) + " " + seshCode)
-    console.log("sendingCommand " + JSON.stringify(command) + " " + seshCode)
+    console.log("sendingCommand " + JSON.stringify(command) + " " + path)
     console.log(options)
     return this.rxStomp.publish(options)
   }

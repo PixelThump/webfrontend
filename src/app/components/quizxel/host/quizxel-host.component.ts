@@ -1,12 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {MessagingService} from "../../../service/messagingservice/messaging.service";
 import {MessagingStateStompMessage} from "../../../service/messagingservice/model/message/MessagingStateStompMessage";
 import {MessagingErrorStompMessage} from "../../../service/messagingservice/model/message/MessagingErrorStompMessage";
-import {QuizxelStage} from "../model/QuizxelStage";
-import {QuizxelState} from "../model/state/QuizxelState";
 import {IMessage} from "@stomp/rx-stomp";
+import {
+  MessagingGenericStompMessage
+} from "../../../service/messagingservice/model/message/MessagingGenericStompMessage";
+import {QuizxelHostState} from "../model/state/host/QuizxelHostState";
 
 
 @Component({
@@ -16,19 +18,17 @@ import {IMessage} from "@stomp/rx-stomp";
 })
 export class QuizxelHostComponent implements OnDestroy, OnInit{
 
-  currentStage: QuizxelStage = QuizxelStage.LOBBY;
+  @Input() seshCode = ""
   fullScreenMode = false;
-  state = <QuizxelState>{}
+  state = <QuizxelHostState>{}
   private subscription: Subscription = <Subscription>{};
-
 
   constructor(private messagingService: MessagingService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-        const seshCode = <string>params.get("seshCode")
-        this.subscription = this.messagingService.joinSeshAsHost(seshCode).subscribe(this.handleMessage())
+        this.subscription = this.messagingService.joinSeshAsHost(this.seshCode).subscribe(this.handleMessage())
       }
     )
   }
@@ -41,17 +41,19 @@ export class QuizxelHostComponent implements OnDestroy, OnInit{
   private handleMessage() {
     return (iMessage: IMessage) => {
       const message = JSON.parse(iMessage.body)
+      console.log(message)
       if ('state' in message) {
-        this.handleStateMessage(<MessagingStateStompMessage>message)
-      } else if ("error" in message) {
+        this.handleInitialStateMessage(<MessagingStateStompMessage>message)
+      } else if ('payload' in message){
+        this.handleStateMessage(<MessagingGenericStompMessage>message)
+      }else if ("error" in message) {
         this.handleErrorMessage(<MessagingErrorStompMessage>message)
       }
     };
   }
 
-  private handleStateMessage(message: MessagingStateStompMessage) {
-    this.state = <QuizxelState>message.state;
-    this.currentStage = this.state.currentStage;
+  private handleStateMessage(message: MessagingGenericStompMessage) {
+    this.state = <QuizxelHostState>message.payload;
   }
 
   private handleErrorMessage(message: MessagingErrorStompMessage) {
@@ -68,4 +70,7 @@ export class QuizxelHostComponent implements OnDestroy, OnInit{
     document.exitFullscreen().then(() => this.fullScreenMode = false).catch()
   }
 
+  private handleInitialStateMessage(message: MessagingStateStompMessage) {
+    this.handleStateMessage({payload: message.state})
+  }
 }
