@@ -5,4 +5,5 @@ import {MessagingState} from "../MessagingState";
 export interface MessagingStateStompMessage extends MessagingStompMessage {
 
   state: MessagingState;
+  reconnectToken: string;
 }

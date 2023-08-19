@@ -2,7 +2,7 @@
 
 export interface MessagingCommand{
 
-  playerId:string
+  playerName:string
   type:string
   body:string
 }

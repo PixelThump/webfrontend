@@ -19,7 +19,7 @@ export class QuizxelHostPlayerImageComponent implements OnInit {
       this.player.playerIconName = PlayerIconName.BASIC;
     }
     console.log(this.player.playerIconName)
-    this.imageName = "quizxel/" + this.player.playerIconName.toLowerCase() + "PlayerIcon"
+    this.imageName = "quizxel/" + this.player.playerIconName + "PlayerIcon"
   }
 
 }

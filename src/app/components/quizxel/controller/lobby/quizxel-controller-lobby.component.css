@@ -12,9 +12,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 5px;
 }
 
-#vipPopUp{
+#vipPopUp, #iconPopUp{
 
   background-color: white;
   border-radius: 10px;

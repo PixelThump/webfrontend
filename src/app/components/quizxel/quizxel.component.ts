@@ -11,6 +11,7 @@ export class QuizxelComponent implements OnInit {
 
   playerIsHost = true
   playerName: string = ""
+  seshCode: string = ""
 
   constructor(private seshService: MessagingService, private route: ActivatedRoute) {
   }
@@ -21,6 +22,7 @@ export class QuizxelComponent implements OnInit {
 
         this.playerName = <string>params.get("playerName")
         this.playerIsHost = this.playerName === "host"
+        this.seshCode = <string>params.get("seshCode")
       }
     )
   }

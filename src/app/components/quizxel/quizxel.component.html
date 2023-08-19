@@ -1,2 +1,2 @@
-<app-quizxel-host *ngIf="playerIsHost"></app-quizxel-host>
-<app-quizxel-controller *ngIf="!playerIsHost"></app-quizxel-controller>
+<app-quizxel-host *ngIf="playerIsHost" [seshCode]="seshCode"></app-quizxel-host>
+<app-quizxel-controller *ngIf="!playerIsHost" [playerName]="playerName" [seshCode]="seshCode" ></app-quizxel-controller>

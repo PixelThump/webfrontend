@@ -1,10 +1,6 @@
-import {QuizxelPlayer} from "../../QuizxelPlayer";
-import {MessagingState} from "../../../../../service/messagingservice/model/MessagingState";
-import {QuizxelStage} from "../../QuizxelStage";
+import {QuizxelHostState} from "./QuizxelHostState";
 
 
-export interface QuizxelHostLobbyState extends MessagingState {
-  players: QuizxelPlayer[]
+export interface QuizxelHostLobbyState extends QuizxelHostState {
   maxPlayers: number
-  currentStage: QuizxelStage
 }
