@@ -25,6 +25,7 @@
   font-size: 1.5rem;
   border-radius: 10px;
   cursor: pointer;
+  margin: 10px;
 }
 
 #wrongAnswer, #hideQuestion, #hideAnswer, #prevQuestion{
@@ -41,10 +42,9 @@
 
 #buzzerRow {
 
-  height: 33vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
