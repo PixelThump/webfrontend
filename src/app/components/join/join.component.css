@@ -5,3 +5,20 @@ form{
   align-items: center;
   justify-content: center;
 }
+
+h2{
+
+  font-size: 3rem;
+}
+
+input, label{
+
+  font-size: 2.5rem;
+  min-height: 2.5rem;
+  padding: 5px;
+}
+
+h3{
+
+  margin: 2px;
+}

@@ -1,11 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="join()">
   <h2>Join Game</h2>
-  <label for="sessionCode">SeshServiceSeshInfo Code</label>
+  <label for="sessionCode"><h3>Sesh Code</h3></label>
   <input id="sessioncode" formControlName="sessionCode" type="text" [maxLength]="sessionCodeLength"
          (input)="sessionCodeToUppercase($event)" [placeholder]="sessionCodeLength + ' character sesh code'"
          tabindex="50">
 
-  <label for="sessionCode">Name</label>
+  <label for="sessionCode"><h3>Name</h3></label>
   <input id="playerName" formControlName="playerName" type="text" [maxLength]="playerNameMaxLength"
          [placeholder]="'Your name'"  maxlength="11" tabindex="51">
   <button type="submit" [disabled]="!form.valid || !seshExists" tabindex="52">Join</button>
