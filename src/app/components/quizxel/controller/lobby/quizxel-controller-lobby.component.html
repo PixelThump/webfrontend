@@ -1,24 +1,19 @@
-<div *ngIf="needToAskForVip && !state.hasVip" class="popUpBackground">
-  <div id="vipPopUp">
+
+<div class="container" id="lobbyContainer">
+  <app-quizxel-popup *ngIf="needToAskForVip && !state.hasVip" id="vipPopUp">
     <h2>Do you want to be the VIP?</h2>
-    <div class="row">
+    <div class="row" id="vipPopUpButtonRow">
       <button (click)="emmitMakeVIPEvent()">Yes</button>
       <button (click)="declineVip()">No</button>
     </div>
-  </div>
-</div>
-
-<div *ngIf="changeIcon" class="popUpBackground">
-  <div id="iconPopUp">
+  </app-quizxel-popup>
+  <app-quizxel-popup *ngIf="changeIcon">
     <h2>Which icon do you want?</h2>
     <div class="row">
       <app-quizxel-controller-lobby-iconchanger [currentIcon]="state.currentIcon"
                                                 (changeIcon)="emitChangeIconEvent($event)"></app-quizxel-controller-lobby-iconchanger>
     </div>
-  </div>
-</div>
-
-<div class="container">
+  </app-quizxel-popup>
   <div class="row">
     <h2 class="col-12">{{state.seshCode}}</h2>
   </div>

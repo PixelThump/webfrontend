@@ -1,26 +1,6 @@
-.popUpBackground {
-  background-color: rgba(22, 22, 22, 0.2);
+#vipPopUpButtonRow{
 
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 5px;
-}
-
-#vipPopUp, #iconPopUp {
-
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
+  justify-content: space-evenly;
 }
 
 h2 {
@@ -52,7 +32,7 @@ h2 {
   margin: 5px;
 }
 
-.container {
+#lobbyContainer {
 
   background: #1D5B79;
   display: flex;
@@ -64,13 +44,14 @@ h2 {
   height: 100%;
 }
 
-button{
+#lobbyContainer button{
 
   background-color: #F3AA60;
   color: white;
   border: black solid 1px;
   font-size: 2rem;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 
