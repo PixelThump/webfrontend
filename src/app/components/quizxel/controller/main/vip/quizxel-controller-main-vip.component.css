@@ -15,6 +15,7 @@
   background-color: #1D5B79;
   color: white;
   justify-content: space-evenly;
+  font-size: 3.5rem;
 }
 
 .container button {
@@ -22,7 +23,7 @@
   background-color: #F3AA60;
   color: white;
   border: black solid 1px;
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   border-radius: 10px;
   cursor: pointer;
   margin: 10px;
