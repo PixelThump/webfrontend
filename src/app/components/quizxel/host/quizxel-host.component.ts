@@ -16,7 +16,7 @@ import {QuizxelHostState} from "../model/state/host/QuizxelHostState";
   templateUrl: './quizxel-host.component.html',
   styleUrls: ['./quizxel-host.component.css']
 })
-export class QuizxelHostComponent implements OnDestroy, OnInit{
+export class QuizxelHostComponent implements OnDestroy, OnInit {
 
   @Input() seshCode = ""
   fullScreenMode = false;
@@ -44,9 +44,9 @@ export class QuizxelHostComponent implements OnDestroy, OnInit{
       console.log(message)
       if ('state' in message) {
         this.handleInitialStateMessage(<MessagingStateStompMessage>message)
-      } else if ('payload' in message){
+      } else if ('payload' in message) {
         this.handleStateMessage(<MessagingGenericStompMessage>message)
-      }else if ("error" in message) {
+      } else if ("error" in message) {
         this.handleErrorMessage(<MessagingErrorStompMessage>message)
       }
     };
@@ -71,6 +71,7 @@ export class QuizxelHostComponent implements OnDestroy, OnInit{
   }
 
   private handleInitialStateMessage(message: MessagingStateStompMessage) {
+    sessionStorage.setItem(message.state.seshCode, message.reconnectToken)
     this.handleStateMessage({payload: message.state})
   }
 }
