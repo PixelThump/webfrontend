@@ -2,7 +2,7 @@
   <app-quizxel-popup *ngIf="state.buzzedPlayerName != undefined" id="buzzedPopUp">
     <h3>{{state.buzzedPlayerName}} buzzered!</h3>
     <h3>Answer: {{state.currentQuestion.questionAnswer}}</h3>
-    <div class="row" id="buzzerRow">
+    <div id="buzzerRow">
       <button type="button" (click)="freeBuzzer(true)" id="correctAnswer">Correct Answer</button>
       <button type="button" (click)="freeBuzzer(undefined)" id="freeBuzzer">Free buzzer</button>
       <button type="button" (click)="freeBuzzer(false)" id="wrongAnswer">Wrong Answer</button>

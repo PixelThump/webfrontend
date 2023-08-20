@@ -42,6 +42,10 @@
 #buzzerRow {
 
   height: 33vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #controls{
@@ -49,8 +53,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   height: 50%;
+}
+#controls .row{
+  margin: 10px;
 }
 
 #buzzedPopUp h3{
