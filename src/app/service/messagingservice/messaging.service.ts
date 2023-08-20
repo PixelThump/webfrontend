@@ -24,15 +24,19 @@ export class MessagingService {
   joinSeshAsHost(seshCode: string): Observable<IMessage> {
 
     const path = this.topicPath + seshCode + "/controller/host"
-    const options = {destination: path}
-    console.log(options)
+    const reconnectToken = <string>sessionStorage.getItem(seshCode);
+    const headers = {"reconnectToken" : reconnectToken}
+    const options = {destination: path, subHeaders: headers, headers: headers}
+    console.log("Host options")
+    console.log(options);
     return this.rxStomp.watch(options)
   }
 
   joinSeshAsController(seshCode: string, playerName: string): Observable<IMessage> {
 
     const path = this.topicPath + seshCode + "/controller/" + playerName;
-    const headers = {'playerName': playerName, "reconnectToken" : "null"}
+    const reconnectToken = <string>sessionStorage.getItem(seshCode);
+    const headers = {'playerName': playerName, "reconnectToken" : reconnectToken}
     const options = {destination: path, subHeaders: headers, headers: headers}
     console.log(options)
     return this.rxStomp.watch(options)

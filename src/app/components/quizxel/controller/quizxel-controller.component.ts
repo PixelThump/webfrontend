@@ -57,7 +57,7 @@ export class QuizxelControllerComponent implements OnDestroy, OnInit {
   }
 
   private handleInitialStateMessage(message: MessagingStateStompMessage) {
-    sessionStorage.setItem("reconnectToken", message.reconnectToken)
+    sessionStorage.setItem(message.state.seshCode, message.reconnectToken)
     this.handleStateMessage({"payload": message.state})
   }
 
