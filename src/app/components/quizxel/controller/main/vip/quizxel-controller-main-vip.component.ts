@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {QuizxelAction} from "../../model/QuizxelAction";
 import {QuizxelControllerState} from "../../../model/state/controller/QuizxelControllerState";
 import {QuizxelControllerMainVipState} from "../../../model/state/controller/QuizxelControllerMainVipState";
@@ -8,7 +8,7 @@ import {QuizxelControllerMainVipState} from "../../../model/state/controller/Qui
   templateUrl: './quizxel-controller-main-vip.component.html',
   styleUrls: ['./quizxel-controller-main-vip.component.css']
 })
-export class QuizxelControllerMainVipComponent implements OnInit{
+export class QuizxelControllerMainVipComponent implements OnInit, OnChanges{
 
   @Input() inputState = <QuizxelControllerState>{}
   state = <QuizxelControllerMainVipState>{}
@@ -17,6 +17,20 @@ export class QuizxelControllerMainVipComponent implements OnInit{
   ngOnInit(): void {
 
     this.state = <QuizxelControllerMainVipState> this.inputState;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.ngOnInit();
+    let prevState = changes["inputState"].previousValue
+    let currentState = <QuizxelControllerMainVipState> changes["inputState"].currentValue
+
+    if (prevState != null){
+
+      if (prevState.buzzedPlayerName == null && currentState.buzzedPlayerName != null){
+
+        navigator.vibrate([250,125,250])
+      }
+    }
   }
 
   freeBuzzer(answerCorrect?: boolean) {

@@ -1,6 +1,60 @@
-#question{
+#question {
 
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 50%;
+}
+
+.container {
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1D5B79;
+  color: white;
+  justify-content: space-evenly;
+}
+
+.container button {
+
+  background-color: #F3AA60;
+  color: white;
+  border: black solid 1px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#wrongAnswer, #hideQuestion, #hideAnswer, #prevQuestion{
+  background-color: #EF6262;
+}
+
+#freeBuzzer {
+  background-color: #F3AA60;
+}
+
+#correctAnswer, #showQuestion, #showAnswer, #nextQuestion {
+  background-color: #4CAF50;
+}
+
+#buzzerRow {
+
+  height: 33vh;
+}
+
+#controls{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 50%;
+}
+
+#buzzedPopUp h3{
+  text-align: center;
+  overflow-wrap: anywhere;
+
 }

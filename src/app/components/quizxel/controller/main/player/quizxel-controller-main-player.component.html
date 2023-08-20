@@ -1,1 +1,7 @@
-<div id="buzzer" [ngClass]="{'activated': state.buzzedPlayerName}" (click)="buzzer()"></div>
+<div class="container" id="mainContainer">
+  <div id="buzzerContainer">
+    <div id="buzzer" [ngClass]="{'activated': state.buzzedPlayerName}" (click)="buzzer()">
+      <p  *ngIf="state.buzzedPlayerName == null" ><b>BUZZER</b></p>
+    </div>
+  </div>
+</div>

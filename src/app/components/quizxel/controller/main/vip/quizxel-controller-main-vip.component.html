@@ -1,22 +1,30 @@
-<div class="row">
-  <button type="button" (click)="freeBuzzer(true)">Correct Answer</button>
-  <button type="button" (click)="freeBuzzer(undefined)">Free buzzer</button>
-  <button type="button" (click)="freeBuzzer(false)">Wrong Answer</button>
-</div>
-<div class="row">
-  <button type="button" (click)="showQuestion(true)">Show Question</button>
-  <button type="button" (click)="showQuestion(false)">Hide Question</button>
-</div>
-<div class="row">
-  <button type="button" (click)="showAnswer(true)">Show Answer</button>
-  <button type="button" (click)="showAnswer(false)">Hide Answer</button>
-</div>
-<div class="row">
-  <button type="button" (click)="prevQuestion()">Previous Question</button>
-  <button type="button" (click)="nextQuestion()">Next Question</button>
-</div>
+<div class="container">
+  <app-quizxel-popup *ngIf="state.buzzedPlayerName != undefined" id="buzzedPopUp">
+    <h3>{{state.buzzedPlayerName}} buzzered!</h3>
+    <h3>Answer: {{state.currentQuestion.questionAnswer}}</h3>
+    <div class="row" id="buzzerRow">
+      <button type="button" (click)="freeBuzzer(true)" id="correctAnswer">Correct Answer</button>
+      <button type="button" (click)="freeBuzzer(undefined)" id="freeBuzzer">Free buzzer</button>
+      <button type="button" (click)="freeBuzzer(false)" id="wrongAnswer">Wrong Answer</button>
+    </div>
+  </app-quizxel-popup>
 
-<div id="question" class="row">
-  <div id="questionText"><span>Question: </span>{{state.currentQuestion.questionText}}</div>
-  <div id="questionAnswer"><span>Answer: </span>{{state.currentQuestion.questionAnswer}}</div>
+  <div id="question" class="row">
+    <div id="questionText"><span>Question: </span>{{state.currentQuestion.questionText}}</div>
+    <div *ngIf="state.showAnswer" id="questionAnswer"><span>Answer: </span>{{state.currentQuestion.questionAnswer}}</div>
+  </div>
+  <div id="controls">
+    <div class="row">
+      <button type="button" (click)="showQuestion(false)" id="hideQuestion">Hide Question</button>
+      <button type="button" (click)="showQuestion(true)" id="showQuestion">Show Question</button>
+    </div>
+    <div class="row">
+      <button type="button" (click)="showAnswer(false)" id="hideAnswer">Hide Answer</button>
+      <button type="button" (click)="showAnswer(true)" id="showAnswer">Show Answer</button>
+    </div>
+    <div class="row">
+      <button type="button" (click)="prevQuestion()" id="prevQuestion">Prev Question</button>
+      <button type="button" (click)="nextQuestion()" id="nextQuestion">Next Question</button>
+    </div>
+  </div>
 </div>

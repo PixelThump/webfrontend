@@ -32,6 +32,7 @@ import {
   QuizxelHostPlayerImageComponent
 } from "./components/quizxel/host/lobby/player/quizxel-host-playerImage.component";
 import { QuizxelControllerLobbyIconchangerComponent } from './components/quizxel/controller/lobby/quizxel-controller-lobby-iconchanger/quizxel-controller-lobby-iconchanger.component';
+import { QuizxelPopupComponent } from './components/quizxel/quizxel-popup/quizxel-popup.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { QuizxelControllerLobbyIconchangerComponent } from './components/quizxel
     QuizxelControllerMainPlayerComponent,
     QuizxelControllerMainVipComponent,
     QuizxelControllerLobbyIconchangerComponent,
+    QuizxelPopupComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,6 @@ cursor: pointer;
 }
 
 .row {
-  background-color: lightgray;
   flex-wrap: wrap;
   max-height: 50vh;
   overflow-y: auto;

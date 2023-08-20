@@ -2,7 +2,8 @@
                               [needToAskForVip]=needToAskForVip (seshAction)="handleAction($event)"
                               (makeVIP)="makeVIP($event)"></app-quizxel-controller-lobby>
 
-<app-quizxel-controller-main-player *ngIf="state.currentStage.toString() === 'MAIN' && !state.isVip" [inputState]="state"
+<app-quizxel-controller-main-player *ngIf="state.currentStage.toString() === 'MAIN' && !state.isVip"
+                                    [inputState]="state"
                                     (seshAction)="handleAction($event)"></app-quizxel-controller-main-player>
 
 <app-quizxel-controller-main-vip *ngIf="state.currentStage.toString() === 'MAIN' && state.isVip"
