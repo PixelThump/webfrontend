@@ -1,5 +1,5 @@
-.popUpBackground{
-  background-color: rgba(22,22,22,0.2);
+.popUpBackground {
+  background-color: rgba(22, 22, 22, 0.2);
 
   position: fixed;
   z-index: 100;
@@ -16,19 +16,19 @@
   padding: 5px;
 }
 
-#vipPopUp, #iconPopUp{
+#vipPopUp, #iconPopUp {
 
   background-color: white;
   border-radius: 10px;
   padding: 10px;
 }
 
-h2{
+h2 {
 
   text-align: center;
 }
 
-#warning{
+#warning {
 
   display: flex;
   flex-direction: column;
@@ -42,9 +42,35 @@ h2{
   padding: 5px;
 }
 
-.textRow{
+.textRow {
 
   text-align: center;
+}
+
+.textRow p{
+
+  margin: 5px;
+}
+
+.container {
+
+  background: #1D5B79;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  height: 100%;
+}
+
+button{
+
+  background-color: #F3AA60;
+  color: white;
+  border: black solid 1px;
+  font-size: 2rem;
+  border-radius: 10px;
 }
 
 
